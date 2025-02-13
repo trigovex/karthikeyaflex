@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import HeroSlider from './components/HeroSlider';
-import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Flag, Gift, Award, PartyPopper, Cake, Building2, GraduationCap, Heart, Baby, Music, Trophy, Users, Tent, Palette, Store, Camera } from 'lucide-react';
+import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Flag, Gift, Award, PartyPopper, Cake, Building2, GraduationCap, Heart, Baby, Music, Trophy, Users, Tent, Palette, Store, Camera, CheckCircle } from 'lucide-react';
 
 interface EventCard {
   image: string;
@@ -65,7 +65,8 @@ const eventCards: EventCard[] = [
 interface OrderFormData {
   name: string;
   mobile: string;
-  bannerType: string;
+  categoryType: string;
+  quality: string;
   quantity: string;
 }
 
@@ -433,15 +434,25 @@ const categoryImages: CategoryImagesMap = {
     ],
 };
 
+// Add this before the App function
+const qualityOptions = [
+  { value: 'standard', label: 'Standard Quality' },
+  { value: 'premium', label: 'Premium Quality' },
+  { value: 'ultra', label: 'Ultra Premium Quality' }
+];
+
 function App() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [selectedCard, setSelectedCard] = useState<EventCard | null>(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showImageOrderForm, setShowImageOrderForm] = useState(false);
+  const [selectedImageData, setSelectedImageData] = useState<{url: string, title: string} | null>(null);
   const [formData, setFormData] = useState<OrderFormData>({
     name: '',
     mobile: '',
-    bannerType: '',
+    categoryType: '',
+    quality: '',
     quantity: '1'
   });
   const [currentReview, setCurrentReview] = useState(0);
@@ -456,15 +467,21 @@ function App() {
     setShowOrderForm(true);
   };
 
+  const handleImageClick = (image: CategoryImage) => {
+    setSelectedImageData(image);
+    setShowImageOrderForm(true);
+  };
+
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowOrderForm(false);
+    setShowImageOrderForm(false);
+    setSelectedCategory(null);
     setShowConfirmation(true);
-    // Reset form data
     setFormData({
       name: '',
       mobile: '',
-      bannerType: '',
+      categoryType: '',
+      quality: '',
       quantity: '1'
     });
   };
@@ -481,6 +498,12 @@ function App() {
   // Add this function to handle category click
   const handleCategoryClick = (categoryTitle: string) => {
     setSelectedCategory(categoryTitle);
+  };
+
+  // Add new function to handle confirmation close
+  const handleConfirmationClose = () => {
+    setShowConfirmation(false);
+    setSelectedCategory(null);
   };
 
   return (
@@ -772,8 +795,8 @@ function App() {
                   <select
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    value={formData.bannerType}
-                    onChange={(e) => setFormData({...formData, bannerType: e.target.value})}
+                    value={formData.categoryType}
+                    onChange={(e) => setFormData({...formData, categoryType: e.target.value})}
                   >
                     <option value="">Select type</option>
                     <option value="standard">Standard</option>
@@ -807,14 +830,19 @@ function App() {
       {/* Confirmation Modal */}
       {showConfirmation && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-xl p-6 max-w-sm w-full text-center">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">Thank You!</h3>
-            <p className="text-gray-600 mb-6">Your order has been successfully placed. We'll contact you shortly.</p>
+          <div className="bg-white rounded-2xl shadow-xl p-8 max-w-sm w-full text-center animate-fade-in">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="w-8 h-8 text-green-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h3>
+            <p className="text-gray-600 mb-6">
+              Your order has been successfully placed. We'll contact you shortly to confirm the details.
+            </p>
             <button
-              onClick={() => setShowConfirmation(false)}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors duration-300"
+              onClick={handleConfirmationClose}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-colors duration-300"
             >
-              OK
+              Close
             </button>
           </div>
         </div>
@@ -843,7 +871,8 @@ function App() {
                 {categoryImages[selectedCategory]?.map((image, index) => (
                   <div
                     key={index}
-                    className="group relative aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100"
+                    className="group relative aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100 cursor-pointer"
+                    onClick={() => handleImageClick(image)}
                   >
                     <img
                       src={image.url}
@@ -860,6 +889,113 @@ function App() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Image Order Form Modal */}
+      {showImageOrderForm && selectedImageData && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-white/10 backdrop-blur-sm">
+            <div className="p-8">
+              <div className="flex justify-between items-center mb-8">
+                <h3 className="text-3xl font-bold text-white tracking-tight">Place Order</h3>
+                <button 
+                  onClick={() => setShowImageOrderForm(false)}
+                  className="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Selected Image Preview */}
+              <div className="mb-8 rounded-xl overflow-hidden shadow-xl ring-4 ring-white/20">
+                <img
+                  src={selectedImageData.url}
+                  alt={selectedImageData.title}
+                  className="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              
+              <form onSubmit={handleSubmitOrder} className="space-y-6">
+                <div className="space-y-1">
+                  <label className="block text-sm font-medium text-white/90 mb-1.5 ml-1">Name</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white/50 text-white placeholder-white/40 shadow-inner transition-all duration-300 hover:bg-white/15"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    placeholder="Enter your name"
+                  />
+                </div>
+                
+                <div className="space-y-1">
+                  <label className="block text-sm font-medium text-white/90 mb-1.5 ml-1">Mobile Number</label>
+                  <input
+                    type="tel"
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white/50 text-white placeholder-white/40 shadow-inner transition-all duration-300 hover:bg-white/15"
+                    value={formData.mobile}
+                    onChange={(e) => setFormData({...formData, mobile: e.target.value})}
+                    placeholder="Enter mobile number"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="block text-sm font-medium text-white/90 mb-1.5 ml-1">Category Type</label>
+                  <select
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white/50 text-white shadow-inner transition-all duration-300 hover:bg-white/15"
+                    value={formData.categoryType}
+                    onChange={(e) => setFormData({...formData, categoryType: e.target.value})}
+                  >
+                    <option value="" className="text-gray-800">Select category</option>
+                    {categories.map((cat) => (
+                      <option key={cat.title} value={cat.title} className="text-gray-800">
+                        {cat.title}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="block text-sm font-medium text-white/90 mb-1.5 ml-1">Quality</label>
+                  <select
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white/50 text-white shadow-inner transition-all duration-300 hover:bg-white/15"
+                    value={formData.quality}
+                    onChange={(e) => setFormData({...formData, quality: e.target.value})}
+                  >
+                    <option value="" className="text-gray-800">Select quality</option>
+                    {qualityOptions.map((option) => (
+                      <option key={option.value} value={option.value} className="text-gray-800">
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="block text-sm font-medium text-white/90 mb-1.5 ml-1">Quantity</label>
+                  <input
+                    type="number"
+                    min="1"
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:ring-2 focus:ring-white/50 focus:border-white/50 text-white placeholder-white/40 shadow-inner transition-all duration-300 hover:bg-white/15"
+                    value={formData.quantity}
+                    onChange={(e) => setFormData({...formData, quantity: e.target.value})}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-white text-blue-600 font-semibold py-3.5 px-4 rounded-xl hover:bg-white/90 transition-all duration-300 mt-8 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 focus:ring-4 focus:ring-white/30"
+                >
+                  Submit Order
+                </button>
+              </form>
             </div>
           </div>
         </div>
