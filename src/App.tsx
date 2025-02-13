@@ -769,7 +769,7 @@ function App() {
                 </button>
               </div>
               
-              <form onSubmit={handleSubmitOrder} className="space-y-4">
+              <form onSubmit={handleSubmitOrder} className="space-y-4" action='11db3843-f04a-4d7f-86de-9e77293d5127' method='POST'>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                   <input
