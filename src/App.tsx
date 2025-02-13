@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import HeroSlider from './components/HeroSlider';
-import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Flag, Gift, Award, PartyPopper, Cake, Building2, GraduationCap, Heart, Baby, Music, Trophy, Users, Tent, Palette, Store, Camera } from 'lucide-react';
 
 interface EventCard {
   image: string;
@@ -96,7 +96,7 @@ const reviews: Review[] = [
   },
   {
     name: "Emily Davis",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200",
+    image: "https://images.unsplash.com/photo-1438761681033-64674bd600d8?auto=format&fit=crop&q=80&w=200",
     rating: 5,
     text: "The custom design service was exceptional! They brought our vision to life perfectly. Will definitely use them again.",
     role: "Marketing Director"
@@ -110,6 +110,329 @@ const reviews: Review[] = [
   }
 ];
 
+// Add Category interface
+interface CategoryCard {
+  title: string;
+  icon: React.ReactNode;
+  image: string;
+  description: string;
+}
+
+// Add category data
+const categories: CategoryCard[] = [
+  {
+    title: "Event Banners",
+    icon: <Flag className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069",
+    description: "Perfect for any special occasion"
+  },
+  {
+    title: "Holiday Specials",
+    icon: <Gift className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?auto=format&fit=crop&q=80&w=2070",
+    description: "Festive designs for holidays"
+  },
+  {
+    title: "Award Ceremonies",
+    icon: <Award className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&q=80&w=2074",
+    description: "Elegant award ceremony designs"
+  },
+  {
+    title: "Party Banners",
+    icon: <PartyPopper className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=2069",
+    description: "Vibrant party decorations"
+  },
+  {
+    title: "Birthday Celebrations",
+    icon: <Cake className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&q=80&w=2071",
+    description: "Make birthdays special"
+  },
+  {
+    title: "Corporate Events",
+    icon: <Building2 className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069",
+    description: "Professional business banners"
+  },
+  {
+    title: "Graduation",
+    icon: <GraduationCap className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=2070",
+    description: "Celebrate academic success"
+  },
+  {
+    title: "Wedding",
+    icon: <Heart className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2070",
+    description: "Elegant wedding designs"
+  },
+  {
+    title: "Baby Shower",
+    icon: <Baby className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=2070",
+    description: "Adorable baby celebrations"
+  },
+  {
+    title: "Concert & Music",
+    icon: <Music className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80&w=2070",
+    description: "Dynamic music event banners"
+  },
+  {
+    title: "Sports Events",
+    icon: <Trophy className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&q=80&w=2070",
+    description: "Energetic sports designs"
+  },
+  {
+    title: "Social Gatherings",
+    icon: <Users className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069",
+    description: "Perfect for social events"
+  },
+  {
+    title: "Festival Banners",
+    icon: <Tent className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=2070",
+    description: "Festive celebration designs"
+  },
+  {
+    title: "Art Exhibitions",
+    icon: <Palette className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&q=80&w=2080",
+    description: "Artistic exhibition banners"
+  },
+  {
+    title: "Retail & Sales",
+    icon: <Store className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=2070",
+    description: "Effective retail promotions"
+  },
+  {
+    title: "Photography",
+    icon: <Camera className="w-6 h-6" />,
+    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=2069",
+    description: "Photography event banners"
+  },
+];
+
+// Add this interface after other interfaces
+interface CategoryImage {
+  url: string;
+  title: string;
+}
+
+// Add this type for category image mapping
+type CategoryImagesMap = {
+  [key: string]: CategoryImage[];
+};
+
+// Add this constant after other constants
+const categoryImages: CategoryImagesMap = {
+  "Birthday Celebrations": [
+    { url: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84", title: "Birthday Decoration 1" },
+    { url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d", title: "Birthday Party Setup" },
+    { url: "https://images.unsplash.com/photo-1558636508-e0db3814bd1d", title: "Birthday Cake" },
+    { url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819", title: "Party Balloons" },
+    { url: "https://images.unsplash.com/photo-1602631985686-1bb0e6a8696e", title: "Birthday Decorations" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Party Setup" },
+    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Celebration Theme" },
+    { url: "https://images.unsplash.com/photo-1507608158173-1dcec673a2e5", title: "Birthday Treats" },
+    { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", title: "Party Time" },
+    { url: "https://images.unsplash.com/photo-1464347744102-11db6282f854", title: "Birthday Party" },
+    // Add more birthday images to complete the grid
+  ],
+  "Wedding": [
+    { url: "https://images.unsplash.com/photo-1519741497674-611481863552", title: "Wedding Setup" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Wedding Decor" },
+    { url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6", title: "Wedding Ceremony" },
+    { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", title: "Wedding Reception" },
+    { url: "https://images.unsplash.com/photo-1520854221256-17451cc331bf", title: "Wedding Flowers" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Wedding Arch" },
+    { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", title: "Wedding Table" },
+    { url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6", title: "Wedding Details" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Wedding Venue" },
+    { url: "https://images.unsplash.com/photo-1520854221256-17451cc331bf", title: "Wedding Theme" },
+    // Add more wedding images to complete the grid
+  ],
+  "Corporate Events": [
+    { url: "https://images.unsplash.com/photo-1533294455009-a77b7557d2d1", title: "Conference Setup" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Corporate Meeting" },
+    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Business Event" },
+    { url: "https://images.unsplash.com/photo-1515187029135-18ee286d815b", title: "Seminar Hall" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Corporate Banner" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Business Conference" },
+    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Meeting Room" },
+    { url: "https://images.unsplash.com/photo-1515187029135-18ee286d815b", title: "Event Space" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Corporate Setup" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Business Meeting" },
+    // Add more corporate images to complete the grid
+  ],
+  "Graduation": [
+    { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1", title: "Graduation Ceremony" },
+    { url: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78", title: "Graduation Cap" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Graduate Success" },
+    { url: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f", title: "Class of 2024" },
+    { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1", title: "Graduation Day" },
+    { url: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78", title: "Academic Achievement" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Graduation Banner" },
+    { url: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f", title: "Graduation Setup" },
+    { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1", title: "Graduation Theme" },
+    { url: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78", title: "Academic Celebration" },
+    // Add more graduation images to complete the grid
+  ],
+  "Baby Shower": [
+    { url: "https://images.unsplash.com/photo-1519689680058-324335c77eba", title: "Baby Shower Setup" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Baby Celebration" },
+    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Baby Party" },
+    { url: "https://images.unsplash.com/photo-1519689680058-324335c77eba", title: "Baby Theme" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Baby Shower Decor" },
+    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Baby Celebration" },
+    { url: "https://images.unsplash.com/photo-1519689680058-324335c77eba", title: "Baby Banner" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Baby Party Setup" },
+    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Baby Shower Theme" },
+    { url: "https://images.unsplash.com/photo-1519689680058-324335c77eba", title: "Baby Celebration" },
+    // Add more baby shower images to complete the grid
+  ],
+  "Concert & Music": [
+    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Concert Stage" },
+    { url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea", title: "Music Festival" },
+    { url: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b", title: "Live Performance" },
+    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Concert Setup" },
+    { url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea", title: "Music Event" },
+    { url: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b", title: "Concert Banner" },
+    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Music Theme" },
+    { url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea", title: "Live Music" },
+    { url: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b", title: "Concert Event" },
+    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Music Festival" },
+    // Add more concert & music images to complete the grid
+  ],
+  "Event Banners": [
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Event Setup" },
+    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Event Space" },
+    { url: "https://images.unsplash.com/photo-1505236858219-8359eb29e329", title: "Event Decoration" },
+    { url: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a", title: "Event Stage" },
+    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Event Lighting" },
+    { url: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3", title: "Event Design" },
+    { url: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4", title: "Event Banner" },
+    { url: "https://images.unsplash.com/photo-1505236858219-8359eb29e329", title: "Event Setup" },
+    { url: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a", title: "Event Theme" },
+    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Event Display" },
+  ],
+  "Holiday Specials": [
+    { url: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be", title: "Christmas Decor" },
+    { url: "https://images.unsplash.com/photo-1543589077-47d81606c1bf", title: "Holiday Lights" },
+    { url: "https://images.unsplash.com/photo-1512389142860-9c449e58a543", title: "Holiday Theme" },
+    { url: "https://images.unsplash.com/photo-1545622783-b3e021430fee", title: "Holiday Spirit" },
+    { url: "https://images.unsplash.com/photo-1513297887119-d46091b24bfa", title: "Holiday Banner" },
+    { url: "https://images.unsplash.com/photo-1481450112092-f00a4c77e381", title: "Holiday Setup" },
+    { url: "https://images.unsplash.com/photo-1543258103-a62bdc069871", title: "Holiday Display" },
+    { url: "https://images.unsplash.com/photo-1512389142860-9c449e58a543", title: "Holiday Decoration" },
+    { url: "https://images.unsplash.com/photo-1545622783-b3e021430fee", title: "Holiday Design" },
+    { url: "https://images.unsplash.com/photo-1513297887119-d46091b24bfa", title: "Holiday Event" },
+  ],
+  "Award Ceremonies": [
+    { url: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31", title: "Award Stage" },
+    { url: "https://images.unsplash.com/photo-1551410224-699683e15636", title: "Trophy Display" },
+    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Ceremony Setup" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Award Banner" },
+    { url: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31", title: "Award Event" },
+    { url: "https://images.unsplash.com/photo-1551410224-699683e15636", title: "Award Display" },
+    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Award Theme" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Award Setup" },
+    { url: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31", title: "Award Ceremony" },
+    { url: "https://images.unsplash.com/photo-1551410224-699683e15636", title: "Award Celebration" },
+  ],
+  "Sports Events": [
+    { url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211", title: "Sports Stadium" },
+    { url: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2", title: "Sports Competition" },
+    { url: "https://images.unsplash.com/photo-1556056504-5c7696c4c28d", title: "Sports Banner" },
+     { url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211", title: "Sports Setup" },
+    { url: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2", title: "Sports Theme" },
+    { url: "https://images.unsplash.com/photo-1556056504-5c7696c4c28d", title: "Sports Display" },
+    { url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211", title: "Sports Arena" },
+    { url: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2", title: "Sports Tournament" },
+    { url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211", title: "Sports Stadium" },
+    { url: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2", title: "Sports Competition" },
+   
+  ],
+  "Social Gatherings": [
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Social Event" },
+    { url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d", title: "Social Setup" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Social Banner" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Social Theme" },
+    { url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d", title: "Social Display" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Social Gathering" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Social Celebration" },
+    { url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d", title: "Social Party" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Social Design" },
+    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Social Decoration" },
+  ],
+  "Festival Banners": [
+    { url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3", title: "Festival Setup" },
+    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Festival Stage" },
+    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Festival Banner" },
+    { url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3", title: "Festival Theme" },
+    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Festival Display" },
+    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Festival Event" },
+    { url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3", title: "Festival Decoration" },
+    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Festival Design" },
+    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Festival Celebration" },
+    { url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3", title: "Festival Setup" },
+  ],
+  "Art Exhibitions": [
+    { url: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b", title: "Art Gallery" },
+    { url: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5", title: "Exhibition Space" },
+    { url: "https://images.unsplash.com/photo-1531685250784-7569952593d2", title: "Art Display" },
+    { url: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b", title: "Art Banner" },
+    { url: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5", title: "Exhibition Setup" },
+    { url: "https://images.unsplash.com/photo-1531685250784-7569952593d2", title: "Art Theme" },
+    { url: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b", title: "Exhibition Design" },
+    { url: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5", title: "Art Show" },
+    { url: "https://images.unsplash.com/photo-1531685250784-7569952593d2", title: "Gallery Setup" },
+    { url: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b", title: "Art Exhibition" },
+  ],
+  "Retail & Sales": [
+    { url: "https://images.unsplash.com/photo-1472851294608-062f824d29cc", title: "Retail Banner" },
+    { url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8", title: "Sale Display" },
+    { url: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a", title: "Store Setup" },
+    { url: "https://images.unsplash.com/photo-1472851294608-062f824d29cc", title: "Retail Theme" },
+    { url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8", title: "Sales Event" },
+    { url: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a", title: "Store Banner" },
+    { url: "https://images.unsplash.com/photo-1472851294608-062f824d29cc", title: "Retail Design" },
+    { url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8", title: "Sale Banner" },
+    { url: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a", title: "Store Display" },
+    { url: "https://images.unsplash.com/photo-1472851294608-062f824d29cc", title: "Retail Setup" },
+  ],
+  "Photography": [
+    { url: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d", title: "Photo Studio" },
+    { url: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5", title: "Camera Setup" },
+    { url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32", title: "Photography Event" },
+    { url: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d", title: "Photo Banner" },
+    { url: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5", title: "Studio Setup" },
+    { url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32", title: "Photography Theme" },
+    { url: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d", title: "Photo Display" },
+    { url: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5", title: "Camera Event" },
+    { url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32", title: "Studio Banner" },
+    { url: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d", title: "Photography Setup" },
+  ],
+  "Party Banners": [
+    { url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205", title: "Celebration Setup" },
+    { url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819", title: "Party Time" },
+    { url: "https://images.unsplash.com/photo-1496337589254-7e19d01cec44", title: "Party Atmosphere" },
+    { url: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf", title: "Party Design" },
+    { url: "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92", title: "Party Vibes" },
+    { url: "https://images.unsplash.com/photo-1533294455009-a77b7557d2d1", title: "Party Space" },
+    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Party Fun" },
+    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Party Elements" },
+    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Party Mood" },
+    { url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205", title: "Celebration Setup" },
+    
+    ],
+};
+
 function App() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showOrderForm, setShowOrderForm] = useState(false);
@@ -122,6 +445,7 @@ function App() {
     quantity: '1'
   });
   const [currentReview, setCurrentReview] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const handlePreview = (image: string) => {
     setSelectedImage(image);
@@ -154,71 +478,65 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
+  // Add this function to handle category click
+  const handleCategoryClick = (categoryTitle: string) => {
+    setSelectedCategory(categoryTitle);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <HeroSlider />
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Featured Collections
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Discover our handcrafted designs for every special occasion. Each collection is carefully curated to make your events memorable.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {eventCards.map((card, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-2xl shadow-md overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-            >
-              <div className="relative h-56 sm:h-48 md:h-52 lg:h-48 xl:h-56 overflow-hidden">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-4 right-4">
-                  <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm text-sm font-semibold text-gray-700 shadow-lg">
-                    {card.category}
-                  </span>
+
+      {/* Category Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Categories
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Explore our wide range of banner designs for every occasion
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {categories.map((category, index) => (
+              <div
+                key={index}
+                className="group relative bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer"
+                onClick={() => handleCategoryClick(category.title)}
+              >
+                <div className="aspect-w-16 aspect-h-9 relative">
+                  <img
+                    src={category.image}
+                    alt={category.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-              </div>
-              <div className="p-4 sm:p-5">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold text-gray-800">{card.title}</h3>
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <span className="text-sm font-medium text-gray-600">{card.rating}</span>
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-indigo-100 rounded-lg text-indigo-600">
+                      {category.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-800">
+                      {category.title}
+                    </h3>
                   </div>
+                  <p className="text-sm text-gray-600">
+                    {category.description}
+                  </p>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">{card.description}</p>
-                <div className="flex items-center justify-between mb-6">
-                  <p className="text-2xl font-bold text-indigo-600">{card.price}</p>
-                  <span className="text-sm text-gray-500">Starting from</span>
-                </div>
-                <div className="flex gap-4">
-                  <button 
-                    onClick={() => handlePreview(card.image)}
-                    className="flex-1 flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-4 rounded-xl transition-colors duration-300"
-                  >
-                    <Eye className="w-5 h-5" />
-                    <span>Preview</span>
-                  </button>
-                  <button 
-                    onClick={() => handleOrder(card)}
-                    className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-colors duration-300"
-                  >
-                    <ShoppingCart className="w-5 h-5" />
-                    <span>Order Now</span>
-                  </button>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* <button className="bg-white/90 hover:bg-white text-indigo-600 font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
+                    Explore More
+                  </button> */}
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Why Choose Us Section */}
       <section className="py-16 bg-white">
@@ -498,6 +816,51 @@ function App() {
             >
               OK
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Add Category Images Modal */}
+      {selectedCategory && (
+        <div className="fixed inset-0 bg-black/80 z-50 overflow-y-auto">
+          <div className="min-h-screen px-4 py-8">
+            <div className="relative max-w-7xl mx-auto">
+              {/* Modal Header */}
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold text-white">
+                  {selectedCategory} Designs
+                </h3>
+                <button 
+                  onClick={() => setSelectedCategory(null)}
+                  className="text-white hover:text-gray-300 transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Images Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {categoryImages[selectedCategory]?.map((image, index) => (
+                  <div
+                    key={index}
+                    className="group relative aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100"
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.title}
+                      className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                      <div className="p-4 w-full">
+                        <h4 className="text-white text-sm font-medium truncate">
+                          {image.title}
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       )}
