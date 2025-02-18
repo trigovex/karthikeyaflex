@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import HeroSlider from './components/HeroSlider';
-import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Flag, Gift, Award, PartyPopper, Cake, Building2, GraduationCap, Heart, Baby, Music, Trophy, Users, Tent, Palette, Store, Camera, CheckCircle } from 'lucide-react';
+import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Flag, Gift, Award, PartyPopper, Cake, Building2, GraduationCap, Heart, Baby, Music, Trophy, Users, Tent, Palette, Store, Camera, CheckCircle, Flower, Diamond, Gem, Home, HeartHandshake, PenTool, Warehouse } from 'lucide-react';
 
 interface EventCard {
   image: string;
@@ -121,102 +121,74 @@ interface CategoryCard {
 
 // Add category data
 const categories: CategoryCard[] = [
+   
   {
-    title: "Event Banners",
-    icon: <Flag className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069",
-    description: "Perfect for any special occasion"
-  },
-  {
-    title: "Holiday Specials",
-    icon: <Gift className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?auto=format&fit=crop&q=80&w=2070",
-    description: "Festive designs for holidays"
-  },
-  {
-    title: "Award Ceremonies",
-    icon: <Award className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&q=80&w=2074",
-    description: "Elegant award ceremony designs"
-  },
-  {
-    title: "Party Banners",
-    icon: <PartyPopper className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=2069",
-    description: "Vibrant party decorations"
-  },
-  {
-    title: "Birthday Celebrations",
-    icon: <Cake className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&q=80&w=2071",
-    description: "Make birthdays special"
-  },
-  {
-    title: "Corporate Events",
-    icon: <Building2 className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069",
-    description: "Professional business banners"
-  },
-  {
-    title: "Graduation",
-    icon: <GraduationCap className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=2070",
-    description: "Celebrate academic success"
-  },
-  {
-    title: "Wedding",
-    icon: <Heart className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2070",
+    title: "Wedding Banners",
+    icon: <Gem className="w-6 h-6" />,
+    image: "/src/Images/HinduWedding.jpg",
     description: "Elegant wedding designs"
   },
   {
-    title: "Baby Shower",
-    icon: <Baby className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&q=80&w=2070",
-    description: "Adorable baby celebrations"
+    title: "Chirstain Wedding Banners",
+    icon: <Heart className="w-6 h-6" />,
+    image: "/src/Images/Christain_Wedding.jpg",
+    description: "Elegant wedding designs"
   },
   {
-    title: "Concert & Music",
-    icon: <Music className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=80&w=2070",
-    description: "Dynamic music event banners"
+    title: "Muslim Wedding Banners",
+    icon: <Gem className="w-6 h-6" />,
+    image: "/src/Images/Muslim_Wedding.jpg",
+    description: "Elegant wedding designs"
   },
   {
-    title: "Sports Events",
-    icon: <Trophy className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&q=80&w=2070",
-    description: "Energetic sports designs"
+    title: "Birthday Banners",
+    icon: <Cake className="w-6 h-6" />,
+    image: "/src/Images/Birthday.jpg",
+    description: "Make birthdays special"
   },
   {
-    title: "Social Gatherings",
-    icon: <Users className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069",
-    description: "Perfect for social events"
+    title: "Mechur Banners",
+    icon: <Flower className="w-6 h-6" />,
+    image: "/src/Images/Mechur.jpeg",
+    description: "Elegant Mechur function designs"
   },
   {
-    title: "Festival Banners",
-    icon: <Tent className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=2070",
-    description: "Festive celebration designs"
+    title: "Gruhapravesam Banners",
+    icon: <Home className="w-6 h-6" />,
+    image: "/src/Images/House.jpg",
+    description: "Elegant wedding designs"
   },
   {
-    title: "Art Exhibitions",
-    icon: <Palette className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&q=80&w=2080",
-    description: "Artistic exhibition banners"
+    title: "Engagement Banners",
+    icon: <HeartHandshake className="w-6 h-6" />,
+    image: "/src/Images/Engagement.jpg",
+    description: "Elegant wedding designs"
   },
   {
-    title: "Retail & Sales",
-    icon: <Store className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80&w=2070",
-    description: "Effective retail promotions"
+    title: "Retirement Banners",
+    icon: <Heart className="w-6 h-6" />,
+    image: "/src/Images/retirement.avif",
+    description: "Elegant wedding designs"
   },
   {
-    title: "Photography",
-    icon: <Camera className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=2069",
-    description: "Photography event banners"
+    title: "NamaKarana Banners",
+    icon: <PenTool className="w-6 h-6" />,
+    image: "/src/Images/Namkarnam.avif",
+    description: "Elegant wedding designs"
   },
+  {
+    title: "GramaPanchayati Banners",
+    icon: <Warehouse className="w-6 h-6" />,
+    image: "/src/Images/Village.jpg",
+    description: "Elegant wedding designs"
+  },
+  {
+    title: "Death Banners",
+    icon: <Star className="w-6 h-6" />,
+    image: "/src/Images/Death.jpg",
+    description: "Elegant wedding designs"
+  },
+  
 ];
 
 // Add this interface after other interfaces
@@ -232,206 +204,42 @@ type CategoryImagesMap = {
 
 // Add this constant after other constants
 const categoryImages: CategoryImagesMap = {
-  "Birthday Celebrations": [
-    { url: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84", title: "Birthday Decoration 1" },
-    { url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d", title: "Birthday Party Setup" },
-    { url: "https://images.unsplash.com/photo-1558636508-e0db3814bd1d", title: "Birthday Cake" },
-    { url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819", title: "Party Balloons" },
-    { url: "https://images.unsplash.com/photo-1602631985686-1bb0e6a8696e", title: "Birthday Decorations" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Party Setup" },
-    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Celebration Theme" },
-    { url: "https://images.unsplash.com/photo-1507608158173-1dcec673a2e5", title: "Birthday Treats" },
-    { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", title: "Party Time" },
-    { url: "https://images.unsplash.com/photo-1464347744102-11db6282f854", title: "Birthday Party" },
-    // Add more birthday images to complete the grid
+  "Birthday Banners": [
+    { url: "/src/Images/Birthday.jpg", title: "Flex-1" },
+     
   ],
-  "Wedding": [
-    { url: "https://images.unsplash.com/photo-1519741497674-611481863552", title: "Wedding Setup" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Wedding Decor" },
-    { url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6", title: "Wedding Ceremony" },
-    { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", title: "Wedding Reception" },
-    { url: "https://images.unsplash.com/photo-1520854221256-17451cc331bf", title: "Wedding Flowers" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Wedding Arch" },
-    { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed", title: "Wedding Table" },
-    { url: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6", title: "Wedding Details" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Wedding Venue" },
-    { url: "https://images.unsplash.com/photo-1520854221256-17451cc331bf", title: "Wedding Theme" },
-    // Add more wedding images to complete the grid
+  "Wedding Banners": [
+    { url: "", title: "" },
+      
   ],
-  "Corporate Events": [
-    { url: "https://images.unsplash.com/photo-1533294455009-a77b7557d2d1", title: "Conference Setup" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Corporate Meeting" },
-    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Business Event" },
-    { url: "https://images.unsplash.com/photo-1515187029135-18ee286d815b", title: "Seminar Hall" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Corporate Banner" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Business Conference" },
-    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Meeting Room" },
-    { url: "https://images.unsplash.com/photo-1515187029135-18ee286d815b", title: "Event Space" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Corporate Setup" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Business Meeting" },
-    // Add more corporate images to complete the grid
+  "Chirstain Wedding Banners": [
+    { url: "", title: "" }, 
   ],
-  "Graduation": [
-    { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1", title: "Graduation Ceremony" },
-    { url: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78", title: "Graduation Cap" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Graduate Success" },
-    { url: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f", title: "Class of 2024" },
-    { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1", title: "Graduation Day" },
-    { url: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78", title: "Academic Achievement" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Graduation Banner" },
-    { url: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f", title: "Graduation Setup" },
-    { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1", title: "Graduation Theme" },
-    { url: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78", title: "Academic Celebration" },
-    // Add more graduation images to complete the grid
+  "Mechur Banners": [
+    { url: "", title: "" }, 
   ],
-  "Baby Shower": [
-    { url: "https://images.unsplash.com/photo-1519689680058-324335c77eba", title: "Baby Shower Setup" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Baby Celebration" },
-    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Baby Party" },
-    { url: "https://images.unsplash.com/photo-1519689680058-324335c77eba", title: "Baby Theme" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Baby Shower Decor" },
-    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Baby Celebration" },
-    { url: "https://images.unsplash.com/photo-1519689680058-324335c77eba", title: "Baby Banner" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Baby Party Setup" },
-    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Baby Shower Theme" },
-    { url: "https://images.unsplash.com/photo-1519689680058-324335c77eba", title: "Baby Celebration" },
-    // Add more baby shower images to complete the grid
+  "Gruhapravesam Banners": [
+    { url: "", title: "" }, 
   ],
-  "Concert & Music": [
-    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Concert Stage" },
-    { url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea", title: "Music Festival" },
-    { url: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b", title: "Live Performance" },
-    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Concert Setup" },
-    { url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea", title: "Music Event" },
-    { url: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b", title: "Concert Banner" },
-    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Music Theme" },
-    { url: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea", title: "Live Music" },
-    { url: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b", title: "Concert Event" },
-    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Music Festival" },
-    // Add more concert & music images to complete the grid
+  "Muslim Wedding Banners": [
+    { url: "", title: "" }, 
   ],
-  "Event Banners": [
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Event Setup" },
-    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Event Space" },
-    { url: "https://images.unsplash.com/photo-1505236858219-8359eb29e329", title: "Event Decoration" },
-    { url: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a", title: "Event Stage" },
-    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Event Lighting" },
-    { url: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3", title: "Event Design" },
-    { url: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4", title: "Event Banner" },
-    { url: "https://images.unsplash.com/photo-1505236858219-8359eb29e329", title: "Event Setup" },
-    { url: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a", title: "Event Theme" },
-    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Event Display" },
+  "Engagement Banners": [
+    { url: "", title: "" }, 
   ],
-  "Holiday Specials": [
-    { url: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be", title: "Christmas Decor" },
-    { url: "https://images.unsplash.com/photo-1543589077-47d81606c1bf", title: "Holiday Lights" },
-    { url: "https://images.unsplash.com/photo-1512389142860-9c449e58a543", title: "Holiday Theme" },
-    { url: "https://images.unsplash.com/photo-1545622783-b3e021430fee", title: "Holiday Spirit" },
-    { url: "https://images.unsplash.com/photo-1513297887119-d46091b24bfa", title: "Holiday Banner" },
-    { url: "https://images.unsplash.com/photo-1481450112092-f00a4c77e381", title: "Holiday Setup" },
-    { url: "https://images.unsplash.com/photo-1543258103-a62bdc069871", title: "Holiday Display" },
-    { url: "https://images.unsplash.com/photo-1512389142860-9c449e58a543", title: "Holiday Decoration" },
-    { url: "https://images.unsplash.com/photo-1545622783-b3e021430fee", title: "Holiday Design" },
-    { url: "https://images.unsplash.com/photo-1513297887119-d46091b24bfa", title: "Holiday Event" },
+  "Retirement Banners": [
+    { url: "", title: "" }, 
   ],
-  "Award Ceremonies": [
-    { url: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31", title: "Award Stage" },
-    { url: "https://images.unsplash.com/photo-1551410224-699683e15636", title: "Trophy Display" },
-    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Ceremony Setup" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Award Banner" },
-    { url: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31", title: "Award Event" },
-    { url: "https://images.unsplash.com/photo-1551410224-699683e15636", title: "Award Display" },
-    { url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87", title: "Award Theme" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Award Setup" },
-    { url: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31", title: "Award Ceremony" },
-    { url: "https://images.unsplash.com/photo-1551410224-699683e15636", title: "Award Celebration" },
+  "Namakarana Banners": [
+    { url: "", title: "" },
   ],
-  "Sports Events": [
-    { url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211", title: "Sports Stadium" },
-    { url: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2", title: "Sports Competition" },
-    { url: "https://images.unsplash.com/photo-1556056504-5c7696c4c28d", title: "Sports Banner" },
-     { url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211", title: "Sports Setup" },
-    { url: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2", title: "Sports Theme" },
-    { url: "https://images.unsplash.com/photo-1556056504-5c7696c4c28d", title: "Sports Display" },
-    { url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211", title: "Sports Arena" },
-    { url: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2", title: "Sports Tournament" },
-    { url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211", title: "Sports Stadium" },
-    { url: "https://images.unsplash.com/photo-1549060279-7e168fcee0c2", title: "Sports Competition" },
+  "GramaPanchayati Banners": [
+    { url: "", title: "" },
+  ],
+  "Death Banners": [
+    { url: "", title: "" },
+  ],
    
-  ],
-  "Social Gatherings": [
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Social Event" },
-    { url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d", title: "Social Setup" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Social Banner" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Social Theme" },
-    { url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d", title: "Social Display" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Social Gathering" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Social Celebration" },
-    { url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d", title: "Social Party" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Social Design" },
-    { url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622", title: "Social Decoration" },
-  ],
-  "Festival Banners": [
-    { url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3", title: "Festival Setup" },
-    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Festival Stage" },
-    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Festival Banner" },
-    { url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3", title: "Festival Theme" },
-    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Festival Display" },
-    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Festival Event" },
-    { url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3", title: "Festival Decoration" },
-    { url: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3", title: "Festival Design" },
-    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Festival Celebration" },
-    { url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3", title: "Festival Setup" },
-  ],
-  "Art Exhibitions": [
-    { url: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b", title: "Art Gallery" },
-    { url: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5", title: "Exhibition Space" },
-    { url: "https://images.unsplash.com/photo-1531685250784-7569952593d2", title: "Art Display" },
-    { url: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b", title: "Art Banner" },
-    { url: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5", title: "Exhibition Setup" },
-    { url: "https://images.unsplash.com/photo-1531685250784-7569952593d2", title: "Art Theme" },
-    { url: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b", title: "Exhibition Design" },
-    { url: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5", title: "Art Show" },
-    { url: "https://images.unsplash.com/photo-1531685250784-7569952593d2", title: "Gallery Setup" },
-    { url: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b", title: "Art Exhibition" },
-  ],
-  "Retail & Sales": [
-    { url: "https://images.unsplash.com/photo-1472851294608-062f824d29cc", title: "Retail Banner" },
-    { url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8", title: "Sale Display" },
-    { url: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a", title: "Store Setup" },
-    { url: "https://images.unsplash.com/photo-1472851294608-062f824d29cc", title: "Retail Theme" },
-    { url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8", title: "Sales Event" },
-    { url: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a", title: "Store Banner" },
-    { url: "https://images.unsplash.com/photo-1472851294608-062f824d29cc", title: "Retail Design" },
-    { url: "https://images.unsplash.com/photo-1441986300917-64674bd600d8", title: "Sale Banner" },
-    { url: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a", title: "Store Display" },
-    { url: "https://images.unsplash.com/photo-1472851294608-062f824d29cc", title: "Retail Setup" },
-  ],
-  "Photography": [
-    { url: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d", title: "Photo Studio" },
-    { url: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5", title: "Camera Setup" },
-    { url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32", title: "Photography Event" },
-    { url: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d", title: "Photo Banner" },
-    { url: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5", title: "Studio Setup" },
-    { url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32", title: "Photography Theme" },
-    { url: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d", title: "Photo Display" },
-    { url: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5", title: "Camera Event" },
-    { url: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32", title: "Studio Banner" },
-    { url: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d", title: "Photography Setup" },
-  ],
-  "Party Banners": [
-    { url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205", title: "Celebration Setup" },
-    { url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819", title: "Party Time" },
-    { url: "https://images.unsplash.com/photo-1496337589254-7e19d01cec44", title: "Party Atmosphere" },
-    { url: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf", title: "Party Design" },
-    { url: "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92", title: "Party Vibes" },
-    { url: "https://images.unsplash.com/photo-1533294455009-a77b7557d2d1", title: "Party Space" },
-    { url: "https://images.unsplash.com/photo-1513151233558-d860c5398176", title: "Party Fun" },
-    { url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce", title: "Party Elements" },
-    { url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30", title: "Party Mood" },
-    { url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205", title: "Celebration Setup" },
-    
-    ],
 };
 
 // Add this before the App function
@@ -457,6 +265,8 @@ function App() {
   });
   const [currentReview, setCurrentReview] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
+  const [showOrderFormModal, setShowOrderFormModal] = useState(false);
 
   const handlePreview = (image: string) => {
     setSelectedImage(image);
@@ -474,9 +284,18 @@ function App() {
 
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Close all possible forms/modals
+    setShowOrderForm(false);
     setShowImageOrderForm(false);
+    setShowOrderFormModal(false);
     setSelectedCategory(null);
-    setShowConfirmation(true);
+    setSelectedCard(null);
+
+    // Show the confirmation popup
+    setShowConfirmation(true); 
+
+    // Reset form data
     setFormData({
       name: '',
       mobile: '',
@@ -506,6 +325,21 @@ function App() {
     setSelectedCategory(null);
   };
 
+  // Add this function to handle view button click
+  const handleViewImage = (image: string) => {
+    setFullScreenImage(image);
+  };
+
+  // Add this function to handle order button click
+  const handleOrderButtonClick = () => {
+    setShowOrderFormModal(true);
+  };
+
+  // Add this function to close the full-screen image
+  const closeFullScreenImage = () => {
+    setFullScreenImage(null);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <HeroSlider />
@@ -515,7 +349,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Categories
+              Flex Printing
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Explore our wide range of banner designs for every occasion
@@ -769,8 +603,7 @@ function App() {
                 </button>
               </div>
               
-              <form onSubmit={handleSubmitOrder} className="space-y-4" action='https://api.web3forms.com/submit' method='POST'>
-              <input type="hidden" name="access_key" value="bb0cdff7-d41f-435d-a96b-efd7c98ae15b"/>
+              <form onSubmit={handleSubmitOrder} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                   <input
@@ -869,22 +702,37 @@ function App() {
 
               {/* Images Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {categoryImages[selectedCategory]?.map((image, index) => (
+                {categories.map((category, index) => (
                   <div
                     key={index}
-                    className="group relative aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100 cursor-pointer"
-                    onClick={() => handleImageClick(image)}
+                    className="relative aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100"
                   >
                     <img
-                      src={image.url}
-                      alt={image.title}
-                      className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
+                      src={category.image}
+                      alt={category.title}
+                      className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                      <div className="p-4 w-full">
-                        <h4 className="text-white text-sm font-medium truncate">
-                          {image.title}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                      <div className="p-3 w-full">
+                        <h4 className="text-white text-sm font-medium truncate mb-2">
+                          {category.title}
                         </h4>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleViewImage(category.image)}
+                            className="flex-1 bg-white hover:bg-gray-100 text-gray-800 text-sm font-medium py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            View
+                          </button>
+                          <button
+                            onClick={handleOrderButtonClick}
+                            className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg"
+                          >
+                            <ShoppingCart className="w-3.5 h-3.5" />
+                            Order
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -993,6 +841,100 @@ function App() {
                 <button
                   type="submit"
                   className="w-full bg-white text-blue-600 font-semibold py-3.5 px-4 rounded-xl hover:bg-white/90 transition-all duration-300 mt-8 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 focus:ring-4 focus:ring-white/30"
+                >
+                  Submit Order
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Full-Screen Image Modal */}
+      {fullScreenImage && (
+        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
+          <button 
+            className="absolute top-4 left-4 text-white hover:text-gray-300 transition-colors"
+            onClick={closeFullScreenImage}
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <img 
+            src={fullScreenImage} 
+            alt="Preview" 
+            className="max-w-[90%] max-h-[90vh] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+
+      {/* Order Form Modal */}
+      {showOrderFormModal && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <div 
+            className="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold text-gray-800">Place Order</h3>
+                <button 
+                  onClick={() => setShowOrderFormModal(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <form onSubmit={handleSubmitOrder} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                  <input
+                    type="tel"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    value={formData.mobile}
+                    onChange={(e) => setFormData({...formData, mobile: e.target.value})}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Banner Type</label>
+                  <select
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    value={formData.categoryType}
+                    onChange={(e) => setFormData({...formData, categoryType: e.target.value})}
+                  >
+                    <option value="">Select type</option>
+                    <option value="standard">Standard</option>
+                    <option value="premium">Premium</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                  <input
+                    type="number"
+                    min="1"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    value={formData.quantity}
+                    onChange={(e) => setFormData({...formData, quantity: e.target.value})}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-colors duration-300"
                 >
                   Submit Order
                 </button>
