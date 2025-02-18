@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import HeroSlider from './components/HeroSlider';
 import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Flag, Gift, Award, PartyPopper, Cake, Building2, GraduationCap, Heart, Baby, Music, Trophy, Users, Tent, Palette, Store, Camera, CheckCircle, Flower, Diamond, Gem, Home, HeartHandshake, PenTool, Warehouse } from 'lucide-react';
+import img1 from './Images/Birthday.jpg';
+import img2 from './Images/Christain_Wedding.jpg';
+import img3 from './Images/Death.jpg';
 
 interface EventCard {
   image: string;
@@ -11,56 +14,56 @@ interface EventCard {
   description?: string;
 }
 
-const eventCards: EventCard[] = [
-  {
-    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069',
-    title: 'Elegant Wedding Collection',
-    price: '$299',
-    category: 'Wedding',
-    rating: 4.9,
-    description: 'Premium wedding designs with elegant themes and customizable options.',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=2069',
-    title: 'Graduation Special',
-    price: '$199',
-    category: 'Graduation',
-    rating: 4.8,
-    description: 'Celebrate academic success with our modern graduation designs.',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=2069',
-    title: 'Birthday Bash Package',
-    price: '$149',
-    category: 'Birthday',
-    rating: 4.7,
-    description: 'Make your birthday memorable with our creative design collection.',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1533294455009-a77b7557d2d1?auto=format&fit=crop&q=80&w=2069',
-    title: 'Corporate Event Suite',
-    price: '$399',
-    category: 'Corporate',
-    rating: 4.9,
-    description: 'Professional designs perfect for corporate events and meetings.',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=2069',
-    title: 'Anniversary Collection',
-    price: '$249',
-    category: 'Anniversary',
-    rating: 4.8,
-    description: 'Romantic and elegant designs to celebrate your special moments.',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1470753937643-efeb931202a9?auto=format&fit=crop&q=80&w=2069',
-    title: 'Baby Shower Package',
-    price: '$179',
-    category: 'Baby Shower',
-    rating: 4.7,
-    description: 'Adorable designs to welcome your little bundle of joy.',
-  },
-];
+// const eventCards: EventCard[] = [
+//   {
+//     image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069',
+//     title: 'Elegant Wedding Collection',
+//     price: '$299',
+//     category: 'Wedding',
+//     rating: 4.9,
+//     description: 'Premium wedding designs with elegant themes and customizable options.',
+//   },
+//   {
+//     image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=2069',
+//     title: 'Graduation Special',
+//     price: '$199',
+//     category: 'Graduation',
+//     rating: 4.8,
+//     description: 'Celebrate academic success with our modern graduation designs.',
+//   },
+//   {
+//     image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=2069',
+//     title: 'Birthday Bash Package',
+//     price: '$149',
+//     category: 'Birthday',
+//     rating: 4.7,
+//     description: 'Make your birthday memorable with our creative design collection.',
+//   },
+//   {
+//     image: 'https://images.unsplash.com/photo-1533294455009-a77b7557d2d1?auto=format&fit=crop&q=80&w=2069',
+//     title: 'Corporate Event Suite',
+//     price: '$399',
+//     category: 'Corporate',
+//     rating: 4.9,
+//     description: 'Professional designs perfect for corporate events and meetings.',
+//   },
+//   {
+//     image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=2069',
+//     title: 'Anniversary Collection',
+//     price: '$249',
+//     category: 'Anniversary',
+//     rating: 4.8,
+//     description: 'Romantic and elegant designs to celebrate your special moments.',
+//   },
+//   {
+//     image: 'https://images.unsplash.com/photo-1470753937643-efeb931202a9?auto=format&fit=crop&q=80&w=2069',
+//     title: 'Baby Shower Package',
+//     price: '$179',
+//     category: 'Baby Shower',
+//     rating: 4.7,
+//     description: 'Adorable designs to welcome your little bundle of joy.',
+//   },
+// ];
 
 interface OrderFormData {
   name: string;
@@ -125,7 +128,7 @@ const categories: CategoryCard[] = [
   {
     title: "Wedding Banners",
     icon: <Gem className="w-6 h-6" />,
-    image: "/src/Images/HinduWedding.jpg",
+    image: img1,
     description: "Elegant wedding designs"
   },
   {
