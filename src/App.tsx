@@ -356,7 +356,8 @@ function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* Updated grid classes for responsive layout */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
             {categories.map((category, index) => (
               <div
                 key={index}
@@ -367,27 +368,22 @@ function App() {
                   <img
                     src={category.image}
                     alt={category.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-32 sm:h-48 object-cover" // Adjusted height for mobile
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 bg-indigo-100 rounded-lg text-indigo-600">
+                <div className="p-3 sm:p-6"> {/* Adjusted padding for mobile */}
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                    <div className="p-1.5 sm:p-2 bg-indigo-100 rounded-lg text-indigo-600">
                       {category.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-gray-800">
+                    <h3 className="text-sm sm:text-lg font-bold text-gray-800 line-clamp-2">
                       {category.title}
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
                     {category.description}
                   </p>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {/* <button className="bg-white/90 hover:bg-white text-indigo-600 font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105">
-                    Explore More
-                  </button> */}
                 </div>
               </div>
             ))}
@@ -396,7 +392,7 @@ function App() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white" style={{marginTop:'-65px'}}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
@@ -950,12 +946,12 @@ function App() {
           {/* Main Footer Content */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 px-5 py-5">
             {/* Company Info */}
-            <div className="space-y-4">
+            <div className="space-y-4 text-center md:text-left">
               <h4 className="text-2xl font-bold mb-6">Flex Design</h4>
               <p className="text-gray-300 leading-relaxed">
                 Creating high-quality, customizable banners with premium materials and exceptional craftsmanship for all your needs.
               </p>
-              <div className="flex items-center gap-4 mt-6">
+              <div className="flex items-center gap-4 mt-6 justify-center md:justify-start">
                 <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors duration-300">
                   <Facebook className="w-5 h-5" />
                 </a>
@@ -972,7 +968,7 @@ function App() {
             </div>
 
             {/* Quick Links */}
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
               <ul className="space-y-3">
                 {['Home', 'About Us', 'Services', 'Portfolio', 'Contact'].map((item) => (
@@ -986,7 +982,7 @@ function App() {
             </div>
 
             {/* Services */}
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="text-lg font-semibold mb-6">Our Services</h4>
               <ul className="space-y-3">
                 {[
@@ -1006,19 +1002,19 @@ function App() {
             </div>
 
             {/* Contact Info */}
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
               <ul className="space-y-4">
-                <li className="flex items-center gap-3 text-gray-300">
-                  <MapPin className="w-5 h-5 text-indigo-400" />
+                <li className="flex items-center gap-3 text-gray-300 justify-center md:justify-start">
+                  <MapPin className="w-5 h-5 text-indigo-400 flex-shrink-0" />
                   <span>123 Design Street, Creative City, 12345</span>
                 </li>
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Phone className="w-5 h-5 text-indigo-400" />
+                <li className="flex items-center gap-3 text-gray-300 justify-center md:justify-start">
+                  <Phone className="w-5 h-5 text-indigo-400 flex-shrink-0" />
                   <span>+1 (555) 123-4567</span>
                 </li>
-                <li className="flex items-center gap-3 text-gray-300">
-                  <Mail className="w-5 h-5 text-indigo-400" />
+                <li className="flex items-center gap-3 text-gray-300 justify-center md:justify-start">
+                  <Mail className="w-5 h-5 text-indigo-400 flex-shrink-0" />
                   <span>info@flexdesign.com</span>
                 </li>
               </ul>
