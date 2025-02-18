@@ -4,6 +4,14 @@ import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitte
 import img1 from './Images/Birthday.jpg';
 import img2 from './Images/Christain_Wedding.jpg';
 import img3 from './Images/Death.jpg';
+import img4 from './Images/Engagement.jpg';
+import img5 from './Images/HinduWedding.jpg';
+import img6 from './Images/House.jpg';
+import img7 from './Images/Mechur.jpeg';
+import img8 from './Images/Muslim_Wedding.jpg';
+import img9 from './Images/Namkarnam.avif';
+import img10 from './Images/Village.jpg';
+import img11 from './Images/retirement.avif'
 
 interface EventCard {
   image: string;
@@ -128,67 +136,67 @@ const categories: CategoryCard[] = [
   {
     title: "Wedding Banners",
     icon: <Gem className="w-6 h-6" />,
-    image: img1,
+    image: img5,
     description: "Elegant wedding designs"
   },
   {
     title: "Chirstain Wedding Banners",
     icon: <Heart className="w-6 h-6" />,
-    image: "/src/Images/Christain_Wedding.jpg",
+    image: img2,
     description: "Elegant wedding designs"
   },
   {
     title: "Muslim Wedding Banners",
     icon: <Gem className="w-6 h-6" />,
-    image: "/src/Images/Muslim_Wedding.jpg",
+    image: img8,
     description: "Elegant wedding designs"
   },
   {
     title: "Birthday Banners",
     icon: <Cake className="w-6 h-6" />,
-    image: "/src/Images/Birthday.jpg",
+    image: img1,
     description: "Make birthdays special"
   },
   {
     title: "Mechur Banners",
     icon: <Flower className="w-6 h-6" />,
-    image: "/src/Images/Mechur.jpeg",
+    image: img7,
     description: "Elegant Mechur function designs"
   },
   {
     title: "Gruhapravesam Banners",
     icon: <Home className="w-6 h-6" />,
-    image: "/src/Images/House.jpg",
+    image: img6,
     description: "Elegant wedding designs"
   },
   {
     title: "Engagement Banners",
     icon: <HeartHandshake className="w-6 h-6" />,
-    image: "/src/Images/Engagement.jpg",
+    image: img4,
     description: "Elegant wedding designs"
   },
   {
     title: "Retirement Banners",
     icon: <Heart className="w-6 h-6" />,
-    image: "/src/Images/retirement.avif",
+    image: img11,
     description: "Elegant wedding designs"
   },
   {
     title: "NamaKarana Banners",
     icon: <PenTool className="w-6 h-6" />,
-    image: "/src/Images/Namkarnam.avif",
+    image: img9,
     description: "Elegant wedding designs"
   },
   {
     title: "GramaPanchayati Banners",
     icon: <Warehouse className="w-6 h-6" />,
-    image: "/src/Images/Village.jpg",
+    image: img10,
     description: "Elegant wedding designs"
   },
   {
     title: "Death Banners",
     icon: <Star className="w-6 h-6" />,
-    image: "/src/Images/Death.jpg",
+    image: img3,
     description: "Elegant wedding designs"
   },
   
