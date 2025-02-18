@@ -97,7 +97,7 @@ const reviews: Review[] = [
   },
   {
     name: "Emily Davis",
-    image: "https://images.unsplash.com/photo-1438761681033-64674bd600d8?auto=format&fit=crop&q=80&w=200",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
     rating: 5,
     text: "The custom design service was exceptional! They brought our vision to life perfectly. Will definitely use them again.",
     role: "Marketing Director"
