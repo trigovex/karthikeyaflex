@@ -11,7 +11,8 @@ import img7 from './Images/Mechur.jpeg';
 import img8 from './Images/Muslim_Wedding.jpg';
 import img9 from './Images/Namkarnam.avif';
 import img10 from './Images/Village.jpg';
-import img11 from './Images/retirement.avif'
+import img11 from './Images/retirement.avif';
+import HoardingImg from './Images/Hoarding1.jpeg'
 
 interface EventCard {
   image: string;
@@ -398,6 +399,78 @@ function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hoardings Section */}
+      <section className="py-16 bg-white" style={{marginTop:"-95px"}}>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Hoardings
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Explore our various types of hoarding cards available in different sizes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Standard Sizes */}
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="8x4 feet Hoarding" className="w-full h-40 sm:h-30 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">8×4 feet</h3>
+              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Available</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="10x5 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">10×5 feet</h3>
+              <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Not Available</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="12x6 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">12×6 feet</h3>
+              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Available</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="15x8 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">15×8 feet</h3>
+              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Available</span>
+            </div>
+
+            {/* Medium Sizes */}
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="20x10 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">20×10 feet</h3>
+              <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Not Available</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="25x12 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">25×12 feet</h3>
+              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Available</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="30x15 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">30×15 feet</h3>
+              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Available</span>
+            </div>
+
+            {/* Large Sizes */}
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="40x20 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">40×20 feet</h3>
+              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Available</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="60x30 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">60×30 feet</h3>
+              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Available</span>
+            </div>
+            <div className="bg-white rounded-lg p-4 sm:p-6 shadow-lg transition-transform transform hover:scale-105 relative">
+              <img src={HoardingImg} alt="80x40 feet Hoarding" className="w-full h-40 sm:h-48 lg:h-56 object-cover rounded-t-lg" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-1">80×40 feet</h3>
+              <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">Not Available</span>
+            </div>
           </div>
         </div>
       </section>
