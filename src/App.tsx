@@ -19,6 +19,7 @@ import img4 from './Images/Engagement.jpg';
 import img5 from './Images/HinduWedding.jpg';
 import img6 from './Images/House.jpg';
 import img7 from './Images/Mechur.jpeg';
+import Header from './components/Header.tsx'; 
 import img8 from './Images/Muslim_Wedding.jpg';
 import img9 from './Images/Namkarnam.avif';
 import img10 from './Images/Village.jpg';
@@ -280,6 +281,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      <Header />
       <HeroSlider />
       <CategorySection categories={categories} handleCategoryClick={handleCategoryClick} />
       <HoardingSection />

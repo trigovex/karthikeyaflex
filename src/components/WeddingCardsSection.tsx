@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Eye, ShoppingCart } from "lucide-react";
 import wedding1 from "../Images/Wed-1.jpg";
 import wedding2 from "../Images/Wed-2.jpg";
 
@@ -26,14 +27,12 @@ const categories = {
 
 const WeddingCardsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showOrderForm, setShowOrderForm] = useState<boolean>(false);
   const [orderSuccess, setOrderSuccess] = useState<boolean>(false);
   const [orderDetails, setOrderDetails] = useState({
     name: "",
     phone: "",
     size: "5x7",
-    comments: "",
   });
 
   // Handle category selection
@@ -43,7 +42,7 @@ const WeddingCardsSection = () => {
 
   // Handle "View" button inside category
   const handleViewClick = (image: string) => {
-    setSelectedImage(image);
+    window.open(image, "_blank");
   };
 
   // Handle "Order" button
@@ -52,7 +51,7 @@ const WeddingCardsSection = () => {
   };
 
   // Handle form change
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setOrderDetails({ ...orderDetails, [e.target.name]: e.target.value });
   };
 
@@ -61,9 +60,14 @@ const WeddingCardsSection = () => {
     e.preventDefault();
     setShowOrderForm(false);
     setOrderSuccess(true);
+
+    // Hide success message after 3 seconds
+    setTimeout(() => {
+      setOrderSuccess(false);
+    }, 3000);
   };
 
-  // Close full-screen category view
+  // Close category view
   const closeCategoryView = () => {
     setSelectedCategory(null);
     setShowOrderForm(false);
@@ -121,37 +125,22 @@ const WeddingCardsSection = () => {
                   className="w-full h-auto rounded-lg cursor-pointer"
                   onClick={() => handleViewClick(card.image)}
                 />
-                <div className="flex justify-between mt-4">
+                <div className="flex justify-between gap-2 mt-4">
                   <button
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg"
                     onClick={() => handleViewClick(card.image)}
+                    className="flex-1 bg-white hover:bg-gray-100 text-gray-800 text-sm font-medium py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg"
                   >
-                    View
+                    <Eye className="w-3.5 h-3.5" /> View
                   </button>
                   <button
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg"
                     onClick={handleOrderClick}
+                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg"
                   >
-                    Order
+                    <ShoppingCart className="w-3.5 h-3.5" /> Order
                   </button>
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      )}
-
-      {/* Image Preview */}
-      {selectedImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
-          <div className="relative">
-            <img src={selectedImage} alt="Preview" className="max-w-full max-h-[80vh] rounded-lg" />
-            <span
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-2 right-2 text-red-600 text-3xl cursor-pointer"
-            >
-              ✖
-            </span>
           </div>
         </div>
       )}
@@ -162,36 +151,14 @@ const WeddingCardsSection = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h3 className="text-xl font-bold mb-4">Order Details</h3>
             <form onSubmit={handleOrderSubmit}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-                className="w-full p-2 mb-3 border rounded"
-                onChange={handleInputChange}
-              />
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                required
-                className="w-full p-2 mb-3 border rounded"
-                onChange={handleInputChange}
-              />
+              <input type="text" name="name" placeholder="Your Name" required className="w-full p-2 mb-3 border rounded" onChange={handleInputChange} />
+              <input type="tel" name="phone" placeholder="Phone Number" required className="w-full p-2 mb-3 border rounded" onChange={handleInputChange} />
               <select name="size" className="w-full p-2 mb-3 border rounded" onChange={handleInputChange}>
                 <option value="5x7">5x7</option>
-                <option value="6x7">6x7</option>
-                <option value="6x8">6x8</option>
+                <option value="5x5">5x5</option>
+                <option value="9x8">9x8</option>
               </select>
-              <textarea
-                name="comments"
-                placeholder="Other comments"
-                className="w-full p-2 mb-3 border rounded"
-                onChange={handleInputChange}
-              />
-              <button type="submit" className="w-full bg-green-500 text-white p-2 rounded">
-                Submit Order
-              </button>
+              <button type="submit" className="w-full bg-indigo-600 text-white p-2 rounded">Submit Order</button>
             </form>
           </div>
         </div>

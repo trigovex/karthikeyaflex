@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Menu } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Slide {
   image: string;
@@ -42,7 +42,6 @@ const slides: Slide[] = [
 
 const HeroSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -62,45 +61,6 @@ const HeroSlider: React.FC = () => {
 
   return (
     <div className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden">
-      {/* Navigation Menu */}
-      <nav className="absolute top-4 right-4 z-30">
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-300"
-          aria-label="Toggle menu"
-          aria-expanded={isMenuOpen}
-        >
-          <Menu className="w-6 h-6 text-white" />
-        </button>
-
-        {/* Menu Items */}
-        <ul className={`absolute right-0 top-full mt-2 w-48 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg transform transition-all duration-300 ease-in-out ${
-          isMenuOpen 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 -translate-y-2 pointer-events-none'
-        }`}>
-          {['Home', 'About', 'Services', 'Contact Us'].map((item) => (
-            <li key={item}>
-              <a
-                href={`#${item.toLowerCase().replace(' ', '-')}`}
-                className="block px-4 py-3 text-gray-700 hover:bg-white/80 hover:text-gray-900 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      {/* Backdrop for mobile when menu is open */}
-      {isMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-20"
-          onClick={() => setIsMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-
       {/* Slides */}
       <div className="relative h-full w-full">
         {slides.map((slide, index) => (
