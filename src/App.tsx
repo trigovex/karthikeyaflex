@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import HeroSlider from './components/HeroSlider.tsx';
+// import HeroSlider from './components/HeroSlider.tsx';
 import CategorySection from './components/CategorySection';
 import HoardingSection from './components/HoardingSection.tsx';
-import WhyChooseUs from './components/WhyChooseUs.tsx';
+// import WhyChooseUs from './components/WhyChooseUs.tsx';
 import ReviewsSection from './components/ReviewsSection';
 import Footer from './components/Footer';
 import ImagePreviewModal from './components/ImagePreviewModal.tsx';
@@ -70,63 +70,43 @@ const reviews = [
 const categories = [
   {
     title: "Wedding Banners",
-    icon: <Gem className="w-6 h-6" />,
-    image: img5,
-    description: "Elegant wedding designs"
+    image: img5
   },
   {
     title: "Christian Wedding Banners",
-    icon: <Heart className="w-6 h-6" />,
-    image: img2,
-    description: "Elegant wedding designs"
+    image: img2
   },
   {
     title: "Muslim Wedding Banners",
-    icon: <Gem className="w-6 h-6" />,
-    image: img8,
-    description: "Elegant wedding designs"
+    image: img8
   },
   {
     title: "Birthday Banners",
-    icon: <Cake className="w-6 h-6" />,
-    image: img1,
-    description: "Make birthdays special"
+    image: img1
   },
   {
     title: "Mature Banners",
-    icon: <Flower className="w-6 h-6" />,
-    image: img7,
-    description: "Elegant Mechur function designs"
+    image: img7
   },
   {
     title: "Gruhapravesam Banners",
-    icon: <Home className="w-6 h-6" />,
-    image: img6,
-    description: "Elegant wedding designs"
+    image: img6
   },
   {
     title: "Engagement Banners",
-    icon: <HeartHandshake className="w-6 h-6" />,
-    image: img4,
-    description: "Elegant wedding designs"
+    image: img4
   },
   {
     title: "Retirement Banners",
-    icon: <Heart className="w-6 h-6" />,
-    image: img11,
-    description: "Elegant wedding designs"
+    image: img11
   },
   {
     title: "NamaKarana Banners",
-    icon: <PenTool className="w-6 h-6" />,
-    image: img9,
-    description: "Elegant wedding designs"
+    image: img9
   },
   {
     title: "GramaPanchayati Banners",
-    icon: <Warehouse className="w-6 h-6" />,
-    image: img10,
-    description: "Elegant wedding designs"
+    image: img10
   },
 ];
 
@@ -134,63 +114,85 @@ const categories = [
 const categoriesinside = [
   {
     title: "Wedding Card",
-    icon: <Gem className="w-6 h-6" />,
-    image: wedding1,
-    description: "Elegant wedding designs"
+    image: wedding1
   },
   {
     title:  "Wedding Card",
-    icon: <Heart className="w-6 h-6" />,
-    image: wedding2,
-    description: "Elegant wedding designs"
+    image: wedding2
   },
   {
     title:  "Wedding Card",
-    icon: <Gem className="w-6 h-6" />,
-    image: wedding3,
-    description: "Elegant wedding designs"
+    image: wedding3
   },
   {
     title:  "Wedding Card",
-    icon: <Cake className="w-6 h-6" />,
-    image: wedding4,
-    description: "Make birthdays special"
+    image: wedding4
   },
   {
     title:  "Wedding Card",
-    icon: <Flower className="w-6 h-6" />,
-    image: wedding5,
-    description: "Elegant Mechur function designs"
+    image: wedding5
   },
   {
     title:  "Wedding Card",
-    icon: <Home className="w-6 h-6" />,
-    image: wedding6,
-    description: "Elegant wedding designs"
+    image: wedding6
   },
   {
     title:  "Wedding Card",
-    icon: <HeartHandshake className="w-6 h-6" />,
-    image: wedding7,
-    description: "Elegant wedding designs"
+    image: wedding7
   },
   {
     title:  "Wedding Card",
-    icon: <Heart className="w-6 h-6" />,
-    image: wedding8,
-    description: "Elegant wedding designs"
+    image: wedding8
   },
   {
     title:  "Wedding Card",
-    icon: <PenTool className="w-6 h-6" />,
-    image: wedding9,
-    description: "Elegant wedding designs"
+    image: wedding9
   },
   {
     title:  "Wedding Card",
-    icon: <Warehouse className="w-6 h-6" />,
-    image: wedding10,
-    description: "Elegant wedding designs"
+    image: wedding10
+  },
+];
+const Hoardingcategories = [
+  {
+    title: "Wedding Banners",
+    image: img5
+  },
+  {
+    title: "Christian Wedding Banners",
+    image: img2
+  },
+  {
+    title: "Muslim Wedding Banners",
+    image: img8
+  },
+  {
+    title: "Birthday Banners",
+    image: img1
+  },
+  {
+    title: "Mature Banners",
+    image: img7
+  },
+  {
+    title: "Gruhapravesam Banners",
+    image: img6
+  },
+  {
+    title: "Engagement Banners",
+    image: img4
+  },
+  {
+    title: "Retirement Banners",
+    image: img11
+  },
+  {
+    title: "NamaKarana Banners",
+    image: img9
+  },
+  {
+    title: "GramaPanchayati Banners",
+    image: img10
   },
 ];
 
@@ -282,11 +284,11 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <Header />
-      <HeroSlider />
+      {/* <HeroSlider /> */}
       <CategorySection categories={categories} handleCategoryClick={handleCategoryClick} />
       <HoardingSection />
       <WeddingCardsSection/>
-      <WhyChooseUs />
+      {/* <WhyChooseUs /> */}
       <ReviewsSection reviews={reviews} currentReview={currentReview} setCurrentReview={setCurrentReview} />
       <ImagePreviewModal selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
       <OrderFormModal

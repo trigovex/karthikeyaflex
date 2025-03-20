@@ -4,7 +4,7 @@ const CategorySection = ({ categories, handleCategoryClick }) => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 mt-9">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">Flex Printing</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Explore our wide range of banner designs for every occasion
@@ -27,16 +27,16 @@ const CategorySection = ({ categories, handleCategoryClick }) => {
               </div>
               <div className="p-3 sm:p-6">
                 <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                  <div className="p-1.5 sm:p-2 bg-indigo-100 rounded-lg text-indigo-600">
+                  {/* <div className="p-1.5 sm:p-2 bg-indigo-100 rounded-lg text-indigo-600">
                     {category.icon}
-                  </div>
+                  </div> */}
                   <h3 className="text-sm sm:text-lg font-bold text-gray-800 line-clamp-2">
                     {category.title}
                   </h3>
                 </div>
-                <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
+                {/* <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
                   {category.description}
-                </p>
+                </p> */}
               </div>
             </div>
           ))}
