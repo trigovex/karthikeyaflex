@@ -12,15 +12,25 @@ const Footer = () => {
               Creating high-quality, customizable banners with premium materials and exceptional craftsmanship for all your needs.
             </p>
             <div className="flex items-center gap-4 mt-6 justify-center md:justify-start">
-              <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors duration-300">
-                <Facebook className="w-5 h-5" />
-              </a>
+            <a href="https://www.facebook.com/profile.php?id=61573868466935&mibextid=ZbWKwL" 
+  className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors duration-300"
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <Facebook className="w-5 h-5" />
+            </a>
+
               <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors duration-300">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors duration-300">
-                <Instagram className="w-5 h-5" />
-              </a>
+              <a 
+  href="https://www.instagram.com/karthikeya_flex_palakol?igsh=MTlkajI1MDFjZ2tkcw==" 
+  className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors duration-300"
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <Instagram className="w-5 h-5" />
+</a>
               <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors duration-300">
                 <Linkedin className="w-5 h-5" />
               </a>
@@ -59,13 +69,15 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
             <ul className="space-y-4">
-              <li className="flex items-center gap-3 text-gray-300 justify-center md:justify-start">
-                <MapPin className="w-5 h-5 text-indigo-400 flex-shrink-0" />
-                <span>D.no: 15-7-14, Rangamannar Peta, Palakollu</span>
-              </li>
+            <li className="flex items-center gap-3 text-gray-300 justify-center md:justify-start">
+  <a href="https://maps.app.goo.gl/nXNomCtmBWv9m5f78?g_st=com.google.maps.preview.copy" target="_blank" rel="noopener noreferrer">
+    <MapPin className="w-5 h-5 text-indigo-400 flex-shrink-0" />
+    <span style={{ textDecoration: 'underline' }}>D.no: 15-7-14, Rangamannar Peta, Palakollu</span>
+  </a>
+</li>
               <li className="flex items-center gap-3 text-gray-300 justify-center md:justify-start">
                 <Phone className="w-5 h-5 text-indigo-400 flex-shrink-0" />
-                <span>+91 9848068806</span>
+                <span>+91 9491022323 , 9848068806</span>
               </li>
               <li className="flex items-center gap-3 text-gray-300 justify-center md:justify-start">
                 <Mail className="w-5 h-5 text-indigo-400 flex-shrink-0" />
