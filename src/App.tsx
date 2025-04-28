@@ -286,8 +286,8 @@ function App() {
       <Header />
       {/* <HeroSlider /> */}
       <CategorySection categories={categories} handleCategoryClick={handleCategoryClick} />
-      <HoardingSection />
-      <WeddingCardsSection/>
+      {/* <HoardingSection />
+      <WeddingCardsSection/> */}
       {/* <WhyChooseUs /> */}
       <ReviewsSection reviews={reviews} currentReview={currentReview} setCurrentReview={setCurrentReview} />
       <ImagePreviewModal selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
