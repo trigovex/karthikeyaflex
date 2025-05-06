@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { getCategories, getSubCategories, getCardsBySubCategory } from '../helpers/api_routes';
+import { getCategories, getSubCategories, getCardsBySubCategory, sendEmail } from '../helpers/api_routes';
 import { X } from 'lucide-react';
+ 
 
 interface Category {
   Id: string;
@@ -23,6 +24,11 @@ interface Card {
   CardName: string;
   CardFile: string;
   CardPrice: string;
+}
+
+interface OrderFormData {
+  name: string;
+  mobile_number: string;
 }
 
 interface CategorySectionProps {
@@ -128,6 +134,15 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasLoadedSubcategories, setHasLoadedSubcategories] = useState(false);
+  const [showOrderForm, setShowOrderForm] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const [orderFormData, setOrderFormData] = useState<OrderFormData>({
+    name: '',
+    mobile_number: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [orderError, setOrderError] = useState<string | null>(null);
 
   // Memoize the category ID to prevent unnecessary re-renders
   const categoryId = useMemo(() => category.id, [category.id]);
@@ -182,6 +197,62 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
       handleCategoryClick(category);
     }
   }, [category, handleCategoryClick]);
+
+  const handleOrderClick = useCallback((card: Card, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedCard(card);
+    setShowOrderForm(true);
+    // Reset form data and states
+    setOrderFormData({ name: '', mobile_number: '' });
+    setOrderSuccess(false);
+    setOrderError(null);
+  }, []);
+
+  const handleOrderFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setOrderFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleOrderSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!selectedCard) return;
+    
+    setIsSubmitting(true);
+    setOrderError(null);
+    
+    try {
+      // Send order data to the API
+      const response = await sendEmail({
+        name: orderFormData.name,
+        mobile_number: orderFormData.mobile_number,
+        image_url: selectedCard.CardFile
+      });
+      
+      console.log("Order submitted successfully:", response.data);
+      setOrderSuccess(true);
+      
+      // Close the form after 2 seconds
+      setTimeout(() => {
+        setShowOrderForm(false);
+        setSelectedCard(null);
+      }, 2000);
+      
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      setOrderError("Failed to submit your order. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const closeOrderForm = () => {
+    setShowOrderForm(false);
+    setSelectedCard(null);
+  };
 
   return (
     <>
@@ -283,11 +354,7 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
                           <span className="text-indigo-600 font-medium text-lg">₹{card.CardPrice}</span>
                           <button 
                             className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 rounded-md text-sm font-medium transition-colors duration-200"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Here you can implement order functionality
-                              console.log("Order clicked for card:", card);
-                            }}
+                            onClick={(e) => handleOrderClick(card, e)}
                           >
                             Order
                           </button>
@@ -296,6 +363,115 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
                     </div>
                   ))}
                 </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Order Form Modal */}
+      {showOrderForm && selectedCard && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div 
+            className="relative bg-white rounded-xl shadow-2xl w-full max-w-md my-8 mx-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button 
+              onClick={closeOrderForm} 
+              className="absolute right-4 top-4 text-gray-500 hover:text-gray-700 bg-white rounded-full p-1 shadow-md z-10"
+              disabled={isSubmitting}
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <div className="p-6 md:p-8">
+              <div className="mb-6 text-center">
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">Place Your Order</h3>
+                <div className="h-1 w-20 bg-indigo-600 rounded-full mx-auto"></div>
+              </div>
+
+              {/* Selected Card Preview */}
+              <div className="mb-6 flex items-center space-x-4">
+                <div className="w-24 h-24 flex-shrink-0">
+                  <img 
+                    src={selectedCard.CardFile} 
+                    alt={selectedCard.CardName}
+                    className="w-full h-full object-cover rounded-md" 
+                  />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-800">{selectedCard.CardName}</h4>
+                  <p className="text-indigo-600 font-medium">₹{selectedCard.CardPrice}</p>
+                </div>
+              </div>
+              
+              {orderSuccess ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center mb-4">
+                  <svg className="w-6 h-6 text-green-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <p className="text-green-700">Your order has been placed successfully!</p>
+                </div>
+              ) : (
+                <form onSubmit={handleOrderSubmit}>
+                  {orderError && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4 text-red-700 text-sm">
+                      {orderError}
+                    </div>
+                  )}
+                  
+                  <div className="mb-4">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={orderFormData.name}
+                      onChange={handleOrderFormChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Enter your full name"
+                      required
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  
+                  <div className="mb-6">
+                    <label htmlFor="mobile_number" className="block text-sm font-medium text-gray-700 mb-1">
+                      Mobile Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="mobile_number"
+                      name="mobile_number"
+                      value={orderFormData.mobile_number}
+                      onChange={handleOrderFormChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Enter your mobile number"
+                      required
+                      pattern="[0-9]{10}"
+                      title="Please enter a valid 10-digit mobile number"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-md font-medium transition-colors duration-200 flex items-center justify-center"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                        Processing...
+                      </>
+                    ) : (
+                      'Place Order'
+                    )}
+                  </button>
+                </form>
               )}
             </div>
           </div>

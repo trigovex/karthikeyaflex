@@ -18,6 +18,9 @@ const API_ROUTES = {
   },
   SUBCATEGORY: {
     GET: '/subcategory/get'
+  },
+  SEND_EMAIL: {
+    POST: '/send_email'
   }
 };
 
@@ -195,6 +198,16 @@ export const getCardsBySubCategory = async (subCategory = '', category = '', tok
     return response.data;
   } catch (error) {
     console.error('Error in getCardsBySubCategory:', error);
+    throw error;
+  }
+};
+
+export const sendEmail = async (data = {}) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}${API_ROUTES.SEND_EMAIL.POST}`, data);
+    return response.data;
+  } catch (error) {
+    console.error('Error in sendEmail:', error);
     throw error;
   }
 };
