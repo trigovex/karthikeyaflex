@@ -365,9 +365,9 @@ return (
                         {category.name === "Hoardings" && (
                           <div className="absolute top-4 right-4">
                             <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                              card.isAvailable ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'
+                              card?.isAvailable ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'
                             }`}>
-                              {card?.isAvailable ? 'Available' : `Available from ${card?.isAvailableFrom}`}
+                              {card?.isAvailable ? 'Available' : `Available from ${card?.AvailableDate}`}
                             </span>
                           </div>
                         )}
@@ -376,8 +376,8 @@ return (
                         <h4 className="text-xl font-bold text-gray-800 mb-2">{card.CardName}</h4>
                         {category.name === "Hoardings" && (
                           <div className="mb-4">
-                            <p className="text-sm text-gray-600">Area: {card.area}</p>
-                            <p className="text-sm text-gray-600">Location: {card.location}</p>
+                            <p className="text-sm text-gray-600">Area: {card?.CardDetails?.Area}</p>
+                            <p className="text-sm text-gray-600">Location: {card?.CardDetails?.Location}</p>
                           </div>
                         )}
                         <div className="flex items-center justify-between">
@@ -440,10 +440,10 @@ return (
                     <p className="text-indigo-600 font-medium text-2xl mb-2">₹{selectedCard.CardPrice}</p>
                     {category.name === "Hoardings" && (
                       <div className="text-sm text-gray-600">
-                        <p>Area: {selectedCard?.area}</p>
-                        <p>Location: {selectedCard?.location}</p>
+                        <p>Area: {selectedCard?.CardDetails?.Area}</p>
+                        <p>Location: {selectedCard?.CardDetails?.Location}</p>
                         <p className={selectedCard?.isAvailable ? 'text-green-600' : 'text-orange-600'}>
-                          {selectedCard?.isAvailable ? 'Available Now' : `Available from ${selectedCard?.isAvailableFrom}`}
+                          {selectedCard?.isAvailable ? 'Available Now' : `Available from ${selectedCard?.AvailableDate}`}
                         </p>
                       </div>
                     )}
