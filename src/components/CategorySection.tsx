@@ -367,7 +367,7 @@ return (
                             <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                               card.isAvailable ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'
                             }`}>
-                              {card.isAvailable ? 'Available' : `Available from ${card.availabilityDate}`}
+                              {card?.isAvailable ? 'Available' : `Available from ${card?.isAvailableFrom}`}
                             </span>
                           </div>
                         )}
@@ -382,8 +382,8 @@ return (
                         )}
                         <div className="flex items-center justify-between">
                           <div className="flex flex-col">
-                            <span className="text-sm text-gray-500">Price</span>
-                            <span className="text-2xl font-bold text-indigo-600">₹{card.CardPrice}</span>
+                            {/* <span className="text-sm text-gray-500">Price</span> */}
+                            {/* <span className="text-2xl font-bold text-indigo-600">₹{card.CardPrice}</span> */}
                           </div>
                           <button 
                             className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-medium transform transition-all duration-300 hover:bg-indigo-700 hover:scale-105 active:scale-95 flex items-center space-x-2"
@@ -440,10 +440,10 @@ return (
                     <p className="text-indigo-600 font-medium text-2xl mb-2">₹{selectedCard.CardPrice}</p>
                     {category.name === "Hoardings" && (
                       <div className="text-sm text-gray-600">
-                        <p>Area: {selectedCard.area}</p>
-                        <p>Location: {selectedCard.location}</p>
-                        <p className={selectedCard.isAvailable ? 'text-green-600' : 'text-orange-600'}>
-                          {selectedCard.isAvailable ? 'Available Now' : `Available from ${selectedCard.availabilityDate}`}
+                        <p>Area: {selectedCard?.area}</p>
+                        <p>Location: {selectedCard?.location}</p>
+                        <p className={selectedCard?.isAvailable ? 'text-green-600' : 'text-orange-600'}>
+                          {selectedCard?.isAvailable ? 'Available Now' : `Available from ${selectedCard?.isAvailableFrom}`}
                         </p>
                       </div>
                     )}
