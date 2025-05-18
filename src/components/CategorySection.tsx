@@ -327,7 +327,7 @@ return (
             onClick={(e) => e.stopPropagation()}
           >
             {/* Enhanced Header with Back Button */}
-            <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-md shadow-md">
+            <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-md shadow-md mb-[240px] md:mb-0">
               <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
                 <div className="flex items-center">
                   <button 
