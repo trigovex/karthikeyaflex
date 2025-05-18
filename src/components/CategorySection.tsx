@@ -321,89 +321,114 @@ return (
       
       {/* Redesigned Cards Modal with Enhanced UI */}
       {showCardsModal && cards && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center overflow-y-auto animate-fadeIn">
-          <div 
-            className="relative bg-gray-50 w-full min-h-screen animate-slideUp"
-            onClick={(e) => e.stopPropagation()}
+  <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center overflow-y-auto animate-fadeIn">
+    <div
+      className="relative bg-gray-50 w-full min-h-screen animate-slideUp max-w-7xl mx-auto"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Header (Sticky) */}
+      <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-md shadow-md">
+        <div className="px-4 py-4 flex items-center justify-between">
+          <button
+            onClick={() => setShowCardsModal(false)}
+            className="flex items-center space-x-2 hover:bg-gray-100 p-2 rounded-lg transition-colors duration-300"
           >
-            {/* Enhanced Header with Back Button */}
-            <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-md shadow-md mb-[240px] md:mb-0">
-              <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-                <div className="flex items-center">
-                  <button 
-                    onClick={() => setShowCardsModal(false)} 
-                    className="flex items-center space-x-2 hover:bg-gray-100 p-2 rounded-lg transition-colors duration-300"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    <span className="font-medium">Back</span>
-                  </button>
-                  <h3 className="text-2xl font-bold text-gray-800 ml-6">{selectedSubCategory}</h3>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            <span className="font-medium">Back</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Scrollable Content */}
+      <div className="px-4 py-8 max-h-[calc(100vh-56px)] overflow-y-auto">
+        {cards.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-xl">No items available for this category</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cards.map((card, idx) => (
+              <div
+                key={idx}
+                className="bg-white/50 backdrop-blur-lg shadow-xl rounded-2xl overflow-hidden hover:shadow-2xl transform transition-transform duration-300 hover:-translate-y-2 flex flex-col"
+              >
+                {/* Image Container */}
+                <div className="relative overflow-hidden aspect-[16/10] bg-gray-100">
+                  <img
+                    src={card.CardFile}
+                    alt={card.CardName}
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {category.name === "Hoardings" && (
+                    <div className="absolute top-3 right-3">
+                      <span
+                        className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                          card?.isAvailable
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}
+                      >
+                        {card?.isAvailable ? 'Available' : `From ${card?.AvailableDate}`}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Info Section */}
+                <div className="p-4 flex flex-col flex-grow">
+                  <h3 className="text-lg font-bold text-gray-800 mb-1">{card.CardName}</h3>
+
+                  {category.name === "Hoardings" && (
+                    <div className="text-sm text-gray-600 mb-3 space-y-1">
+                      <p>📍 Area: {card?.CardDetails?.Area}</p>
+                      <p>📅 Available: {card?.CardDetails?.AvailableDate}</p>
+                    </div>
+                  )}
+
+                  {/* Bottom row with Book Now on right */}
+                  <div className="mt-auto flex justify-end">
+                    <button
+                      className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-medium transform transition-all duration-300 hover:bg-indigo-700 hover:scale-105 active:scale-95 flex items-center space-x-2"
+                      onClick={(e) => handleOrderClick(card, e)}
+                    >
+                      <span>Book Now</span>
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="max-w-7xl mx-auto px-4 py-8">
-              {cards.length === 0 ? (
-                <div className="text-center py-12">
-                  <p className="text-gray-500 text-xl">No items available for this category</p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {cards.map((card, idx) => (
-                    <div 
-                      key={idx} 
-                      className="group bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
-                    >
-                      <div className="aspect-[16/10] relative">
-                        <img
-                          src={card.CardFile}
-                          alt={card.CardName}
-                          className="w-full h-full object-contain bg-gray-50"
-                        />
-                        {category.name === "Hoardings" && (
-                          <div className="absolute top-4 right-4">
-                            <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                              card?.isAvailable ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'
-                            }`}>
-                              {card?.isAvailable ? 'Available' : `Available from ${card?.AvailableDate}`}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-6">
-                        <h4 className="text-xl font-bold text-gray-800 mb-2">{card.CardName}</h4>
-                        {category.name === "Hoardings" && (
-                          <div className="mb-4">
-                            <p className="text-sm text-gray-600">Area: {card?.CardDetails?.Area}</p>
-                            <p className="text-sm text-gray-600">Location: {card?.CardDetails?.Location}</p>
-                          </div>
-                        )}
-                        <div className="flex items-center justify-between">
-                          <div className="flex flex-col">
-                            {/* <span className="text-sm text-gray-500">Price</span> */}
-                            {/* <span className="text-2xl font-bold text-indigo-600">₹{card.CardPrice}</span> */}
-                          </div>
-                          <button 
-                            className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-medium transform transition-all duration-300 hover:bg-indigo-700 hover:scale-105 active:scale-95 flex items-center space-x-2"
-                            onClick={(e) => handleOrderClick(card, e)}
-                          >
-                            <span>Book Now</span>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
 
       {/* Enhanced Order Form Modal */}
       {showOrderForm && selectedCard && (
@@ -422,31 +447,23 @@ return (
             
             <div className="p-8">
               <div className="mb-8 text-center">
-                <h3 className="text-3xl font-bold text-gray-800 mb-2">Book Your Space</h3>
+                <h3 className="text-3xl font-bold text-gray-800 mb-2">Book Your Item</h3>
                 <div className="h-1 w-20 bg-indigo-600 rounded-full mx-auto"></div>
               </div>
 
               <div className="mb-8 bg-gray-50 rounded-xl p-4">
-                <div className="flex items-start space-x-4">
-                  <div className="w-32 h-32 flex-shrink-0">
+                <div className="flex flex-col items-center">
+                  <div className="w-full max-h-[80vh] relative">
                     <img 
                       src={selectedCard.CardFile} 
                       alt={selectedCard.CardName}
-                      className="w-full h-full object-cover rounded-lg shadow-md" 
+                      className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-md mx-auto" 
+                      style={{ width: 'auto', height: 'auto' }}
                     />
                   </div>
-                  <div>
+                  <div className="text-center mt-4">
                     <h4 className="font-bold text-gray-800 text-lg mb-1">{selectedCard.CardName}</h4>
-                    <p className="text-indigo-600 font-medium text-2xl mb-2">₹{selectedCard.CardPrice}</p>
-                    {category.name === "Hoardings" && (
-                      <div className="text-sm text-gray-600">
-                        <p>Area: {selectedCard?.CardDetails?.Area}</p>
-                        <p>Location: {selectedCard?.CardDetails?.Location}</p>
-                        <p className={selectedCard?.isAvailable ? 'text-green-600' : 'text-orange-600'}>
-                          {selectedCard?.isAvailable ? 'Available Now' : `Available from ${selectedCard?.AvailableDate}`}
-                        </p>
-                      </div>
-                    )}
+                  
                   </div>
                 </div>
               </div>
