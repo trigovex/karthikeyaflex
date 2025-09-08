@@ -174,8 +174,9 @@ function App() {
         setShowConfirmation(false);
         return;
       }
-      // ✅ No window.history.go(1) here
-      // If nothing is open, let browser/system handle back normally
+
+      // ✅ Nothing open → redirect
+      window.location.href = "https://karthikeyaflex.com";
     };
 
     // Seed initial history entry
