@@ -1,30 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Banner images related to printing flex and cards
-const bannerImages = [
-  {
-    url: "https://img.freepik.com/premium-photo/printing-house-plant-offset-machine-cmyk-multicolor-printing-process_250469-16980.jpg",
-    alt: "Professional Printing Services"
-  },
-  {
-    url: "https://img.freepik.com/premium-photo/wedding-invitation-cards-with-envelopes-flowers-blue-background_136595-12363.jpg",
-    alt: "Wedding Cards Collection"
-  },
-  {
-    url: "https://img.freepik.com/premium-photo/business-card-mockup-design-with-shadow-overlay_23-2149073144.jpg",
-    alt: "Business Cards & Stationery"
-  },
-  {
-    url: "https://img.freepik.com/premium-photo/birthday-party-decorations-with-balloons-confetti-flat-lay_136595-9464.jpg",
-    alt: "Birthday & Event Cards"
-  }
-];
+type BannerImage = { url: string; alt: string };
 
-const BannerSlider: React.FC = () => {
+interface BannerSliderProps {
+  images?: BannerImage[];
+}
+
+const BannerSlider: React.FC<BannerSliderProps> = ({ images }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const bannerImages = images || [];
+
+  if (!bannerImages.length) {
+    return null;
+  }
 
   // Auto-play functionality with reduced interval time
   useEffect(() => {

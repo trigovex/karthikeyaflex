@@ -1,31 +1,11 @@
 import React, { useState } from "react";
 import { Eye, ShoppingCart } from "lucide-react";
-import wedding1 from "../Images/Wed-1.jpg";
-import wedding2 from "../Images/Wed-2.jpg";
 
-const categories = {
-  Hindu: {
-    image: "https://static.vecteezy.com/system/resources/previews/035/918/050/large_2x/ai-generated-beautiful-lord-ganesh-ai-generated-free-photo.jpg",
-    cards: [
-      { image: wedding1, size: "5x7" },
-      { image: wedding2, size: "6x8" },
-    ],
-  },
-  Muslim: {
-    image: "https://static.vecteezy.com/system/resources/previews/036/717/796/large_2x/ai-generated-a-islamic-masjid-on-a-blue-background-free-photo.jpg",
-    cards: [
-      { image: "https://aarambhonline.com/wp-content/uploads/2024/11/SPSL02_1.jpg", size: "5x7" },
-    ],
-  },
-  Christian: {
-    image: "https://www.christiantechjobs.io/_next/image?url=https%3A%2F%2Ftgzvwoczsnauenygpsth.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fblog-images%2Fchristian-tech-trends-2024.png%3Ft%3D2024-03-06T15%253A30%253A55.865Z&w=2048&q=75",
-    cards: [
-      { image: "https://aarambhonline.com/wp-content/uploads/2024/11/SPSL02_1.jpg", size: "6x8" },
-    ],
-  },
-};
+interface Card { image: string; size?: string }
+interface Category { key: string; image: string; cards: Card[] }
+interface WeddingCardsSectionProps { categories: Record<string, Category> }
 
-const WeddingCardsSection = () => {
+const WeddingCardsSection: React.FC<WeddingCardsSectionProps> = ({ categories }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [showOrderForm, setShowOrderForm] = useState<boolean>(false);
   const [orderSuccess, setOrderSuccess] = useState<boolean>(false);
