@@ -11,7 +11,6 @@ import { X } from 'lucide-react';
 
 import img1 from './Images/Birthday.jpg';
 import img2 from './Images/Christain_Wedding.jpg';
-import img3 from './Images/Death.jpg';
 import img4 from './Images/Engagement.jpg';
 import img5 from './Images/HinduWedding.jpg';
 import img6 from './Images/House.jpg';
@@ -84,7 +83,7 @@ function App() {
   const [fullScreenImage, setFullScreenImage] = useState(null);
   const [showOrderFormModal, setShowOrderFormModal] = useState(false);
 
-  // ✅ Helper: push history entry without forcing forward
+  // push history state so back works like website
   const pushHistoryEntry = () => {
     try {
       window.history.pushState({}, '');
@@ -175,9 +174,11 @@ function App() {
         setShowConfirmation(false);
         return;
       }
+      // ✅ No window.history.go(1) here
+      // If nothing is open, let browser/system handle back normally
     };
 
-    // Initial state push
+    // Seed initial history entry
     pushHistoryEntry();
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
