@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { CheckCircle } from 'lucide-react';
+import HoardingImg from '../Images/Hoarding1.jpeg';
+import FlexImage1 from '../Images/Hoarding1.jpeg'; // Example flex image
+import FlexImage2 from '../Images/Hoarding1.jpeg';
+import { CheckCircle } from 'lucide-react'; // Example flex image
 
 const HoardingSection = () => {
   const [selectedHoarding, setSelectedHoarding] = useState(null);
@@ -44,7 +47,14 @@ const HoardingSection = () => {
     }, 500);
   };
 
-  const hoardings: Array<{ size: string; available: boolean; description: string; flexImages: string[]; image?: string }> = [];
+  const hoardings = [
+    { size: '8×4 feet', available: true, description: 'Ideal for small events.', flexImages: [FlexImage1, FlexImage2] },
+     { size: '12×6 feet', available: false, description: 'Perfect for larger gatherings.', flexImages: [FlexImage1, FlexImage2] },
+    { size: '15×8 feet', available: true, description: 'Suitable for big events.', flexImages: [FlexImage1] },
+     { size: '25×12 feet', available: false, description: 'Ideal for major promotions.', flexImages: [FlexImage1] },
+      { size: '60×30 feet', available: true, description: 'Suitable for massive events.', flexImages: [FlexImage1, FlexImage2] },
+    { size: '80×40 feet', available: false, description: 'Best for huge promotions.', flexImages: [FlexImage1] },
+  ];
 
   const handleConfirmationClose = () => {
     setShowThankYou(false);
@@ -65,13 +75,11 @@ const HoardingSection = () => {
               key={index}
               className="bg-white rounded-xl overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-105"
             >
-              {hoarding.image && (
-                <img
-                  src={hoarding.image}
-                  alt={`${hoarding.size} Hoarding`}
-                  className="w-full h-48 object-cover rounded-t-xl"
-                />
-              )}
+              <img
+                src={HoardingImg}
+                alt={`${hoarding.size} Hoarding`}
+                className="w-full h-48 object-cover rounded-t-xl"
+              />
               <div className="p-6">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-800">

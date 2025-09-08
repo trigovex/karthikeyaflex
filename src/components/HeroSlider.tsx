@@ -7,11 +7,40 @@ interface Slide {
   subtitle: string;
 }
 
-interface HeroSliderProps {
-  slides: Slide[];
-}
+const slides: Slide[] = [
+  {
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2070',
+    title: 'Magical Weddings',
+    subtitle: "Creating unforgettable moments for your special day",
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=2070',
+    title: 'Birthday Celebrations',
+    subtitle: "Making every birthday a spectacular event",
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=2070',
+    title: 'Anniversary Parties',
+    subtitle: "Celebrate years of love and happiness",
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1470753937643-efeb931202a9?auto=format&fit=crop&q=80&w=2070',
+    title: 'Baby Showers',
+    subtitle: "Welcome your little one with style and joy",
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1533294455009-a77b7557d2d1?auto=format&fit=crop&q=80&w=2070',
+    title: 'Corporate Events',
+    subtitle: "Professional celebrations for your business milestones",
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=2070',
+    title: 'Graduation Parties',
+    subtitle: "Honor academic achievements with an amazing celebration",
+  },
+];
 
-const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
+const HeroSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
