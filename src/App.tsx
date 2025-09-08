@@ -190,6 +190,8 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [fullScreenImage, setFullScreenImage] = useState(null);
   const [showOrderFormModal, setShowOrderFormModal] = useState(false);
+  const [backExitArmed, setBackExitArmed] = useState(false);
+  const [showExitHint, setShowExitHint] = useState(false);
   
   const pushHistoryEntry = () => {
     try {
@@ -285,23 +287,34 @@ function App() {
         pushHistoryEntry();
         return;
       }
-      // Stay on home: re-push and try to move forward
-      pushHistoryEntry();
-      try {
-        window.history.go(1);
-      } catch (e) {
-        // no-op
+      const isHome = !fullScreenImage && !showImageOrderForm && !showOrderForm && !showOrderFormModal && !selectedCategory;
+      if (isHome) {
+        if (!backExitArmed) {
+          setBackExitArmed(true);
+          setShowExitHint(true);
+          try {
+            window.history.go(1);
+          } catch (e) {
+            // no-op
+          }
+          setTimeout(() => {
+            setBackExitArmed(false);
+            setShowExitHint(false);
+          }, 2000);
+          return;
+        } else {
+          setShowExitHint(false);
+          return;
+        }
       }
     };
 
-    // Seed history to intercept the first back press
-    pushHistoryEntry();
-    pushHistoryEntry();
+    // Do not seed history; manage back behavior via popstate
     window.addEventListener('popstate', onPopState);
     return () => {
       window.removeEventListener('popstate', onPopState);
     };
-  }, [fullScreenImage, showImageOrderForm, showOrderForm, showOrderFormModal, selectedCategory]);
+  }, [fullScreenImage, showImageOrderForm, showOrderForm, showOrderFormModal, selectedCategory, backExitArmed]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
@@ -363,6 +376,11 @@ function App() {
         </div>
       )}
       <Footer />
+      {showExitHint && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm z-50">
+          Press back again to exit
+        </div>
+      )}
     </div>
   );
 }
