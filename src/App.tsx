@@ -285,11 +285,17 @@ function App() {
         pushHistoryEntry();
         return;
       }
-      // As a last resort, re-push to prevent leaving the app
+      // Stay on home: re-push and try to move forward
       pushHistoryEntry();
+      try {
+        window.history.go(1);
+      } catch (e) {
+        // no-op
+      }
     };
 
     // Seed history to intercept the first back press
+    pushHistoryEntry();
     pushHistoryEntry();
     window.addEventListener('popstate', onPopState);
     return () => {
