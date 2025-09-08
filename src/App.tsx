@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import CategorySection from './components/CategorySection';
 import HoardingSection from './components/HoardingSection.tsx';
 // import WhyChooseUs from './components/WhyChooseUs.tsx';
-import ReviewsSection from './components/ReviewsSection';
 import Footer from './components/Footer';
 import ImagePreviewModal from './components/ImagePreviewModal.tsx';
 import OrderFormModal from './components/OrderFormModal';
@@ -37,36 +36,6 @@ import wedding9 from './Images/Wed-9.jpg';
 import wedding10 from './Images/Wed-10.jpg';
 
 
-const reviews = [
-  {
-    name: "Sarah Johnson",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
-    rating: 5,
-    text: "Absolutely amazing quality! The banners exceeded my expectations. The colors were vibrant and the material was perfect for our outdoor event.",
-    role: "Event Organizer"
-  },
-  {
-    name: "Michael Chen",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
-    rating: 5,
-    text: "Professional service from start to finish. The team was incredibly helpful and delivered our corporate banners ahead of schedule.",
-    role: "Business Owner"
-  },
-  {
-    name: "Emily Davis",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
-    rating: 5,
-    text: "The custom design service was exceptional! They brought our vision to life perfectly. Will definitely use them again.",
-    role: "Marketing Director"
-  },
-  {
-    name: "James Wilson",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
-    rating: 5,
-    text: "Outstanding quality and customer service. The team went above and beyond to ensure our satisfaction.",
-    role: "Retail Manager"
-  }
-];
 
 const categories = [
   {
@@ -218,21 +187,31 @@ function App() {
     quality: '',
     quantity: '1'
   });
-  const [currentReview, setCurrentReview] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [fullScreenImage, setFullScreenImage] = useState(null);
   const [showOrderFormModal, setShowOrderFormModal] = useState(false);
+  
+  const pushHistoryEntry = () => {
+    try {
+      window.history.pushState(null, '', window.location.href);
+    } catch (err) {
+      // no-op
+    }
+  };
 
   const handlePreview = (image) => {
+    pushHistoryEntry();
     setSelectedImage(image);
   };
 
   const handleOrder = (card) => {
+    pushHistoryEntry();
     setSelectedCard(card);
     setShowOrderForm(true);
   };
 
   const handleImageClick = (image) => {
+    pushHistoryEntry();
     setSelectedImageData(image);
     setShowImageOrderForm(true);
   };
@@ -254,14 +233,10 @@ function App() {
     });
   };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentReview((prev) => (prev + 1) % reviews.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
+  // Reviews section removed
 
   const handleCategoryClick = (categoryTitle) => {
+    pushHistoryEntry();
     setSelectedCategory(categoryTitle);
   };
 
@@ -275,12 +250,52 @@ function App() {
   };
 
   const handleOrderButtonClick = () => {
+    pushHistoryEntry();
     setShowOrderFormModal(true);
   };
 
   const closeFullScreenImage = () => {
     setFullScreenImage(null);
   };
+
+  useEffect(() => {
+    const onPopState = () => {
+      if (fullScreenImage) {
+        setFullScreenImage(null);
+        pushHistoryEntry();
+        return;
+      }
+      if (showImageOrderForm) {
+        setShowImageOrderForm(false);
+        pushHistoryEntry();
+        return;
+      }
+      if (showOrderForm) {
+        setShowOrderForm(false);
+        pushHistoryEntry();
+        return;
+      }
+      if (showOrderFormModal) {
+        setShowOrderFormModal(false);
+        pushHistoryEntry();
+        return;
+      }
+      if (selectedCategory) {
+        setSelectedCategory(null);
+        pushHistoryEntry();
+        return;
+      }
+      // As a last resort, re-push to prevent leaving the app
+      pushHistoryEntry();
+    };
+
+    // Seed history to intercept the first back press
+    pushHistoryEntry();
+    window.addEventListener('popstate', onPopState);
+    return () => {
+      window.removeEventListener('popstate', onPopState);
+    };
+  }, [fullScreenImage, showImageOrderForm, showOrderForm, showOrderFormModal, selectedCategory]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
@@ -291,7 +306,7 @@ function App() {
       {/* <HoardingSection />
       <WeddingCardsSection/> */}
       {/* <WhyChooseUs /> */}
-      <ReviewsSection reviews={reviews} currentReview={currentReview} setCurrentReview={setCurrentReview} />
+      {/* Reviews section removed */}
       <ImagePreviewModal selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
       <OrderFormModal
         showOrderForm={showOrderForm}
