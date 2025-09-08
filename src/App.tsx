@@ -309,7 +309,8 @@ function App() {
       }
     };
 
-    // Do not seed history; manage back behavior via popstate
+    // Seed one entry so back from inner views returns within the app
+    pushHistoryEntry();
     window.addEventListener('popstate', onPopState);
     return () => {
       window.removeEventListener('popstate', onPopState);
