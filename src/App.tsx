@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-// import HeroSlider from './components/HeroSlider.tsx';
 import CategorySection from './components/CategorySection';
-import HoardingSection from './components/HoardingSection.tsx';
-// import WhyChooseUs from './components/WhyChooseUs.tsx';
 import Footer from './components/Footer';
 import ImagePreviewModal from './components/ImagePreviewModal.tsx';
 import OrderFormModal from './components/OrderFormModal';
 import ConfirmationModal from './components/ConfirmationModal.tsx';
 import CategoryImagesModal from './components/CategoryImagesModal.tsx';
 import ImageOrderFormModal from './components/ImageOrderFormModal';
-import WeddingCardsSection from './components/WeddingCardsSection.tsx';
-import { Eye, ShoppingCart, Star, X, ChevronLeft, ChevronRight, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Flag, Gift, Award, PartyPopper, Cake, Building2, GraduationCap, Heart, Baby, Music, Trophy, Users, Tent, Palette, Store, Camera, CheckCircle, Flower, Diamond, Gem, Home, HeartHandshake, PenTool, Warehouse } from 'lucide-react';
+import Header from './components/Header.tsx';
+import { X } from 'lucide-react';
+
 import img1 from './Images/Birthday.jpg';
 import img2 from './Images/Christain_Wedding.jpg';
 import img3 from './Images/Death.jpg';
@@ -18,12 +16,11 @@ import img4 from './Images/Engagement.jpg';
 import img5 from './Images/HinduWedding.jpg';
 import img6 from './Images/House.jpg';
 import img7 from './Images/Mechur.jpeg';
-import Header from './components/Header.tsx'; 
-// import BannerSlider from './components/BannerSlider';
 import img8 from './Images/Muslim_Wedding.jpg';
 import img9 from './Images/Namkarnam.avif';
 import img10 from './Images/Village.jpg';
 import img11 from './Images/retirement.avif';
+
 import wedding1 from './Images/Wed-1.jpg';
 import wedding2 from './Images/Wed-2.jpg';
 import wedding3 from './Images/Wed-3.jpg';
@@ -35,137 +32,33 @@ import wedding8 from './Images/Wed-8.jpg';
 import wedding9 from './Images/Wed-9.jpg';
 import wedding10 from './Images/Wed-10.jpg';
 
-
-
+// Categories
 const categories = [
-  {
-    title: "Wedding Banners",
-    image: img5
-  },
-  {
-    title: "Christian Wedding Banners",
-    image: img2
-  },
-  {
-    title: "Muslim Wedding Banners",
-    image: img8
-  },
-  {
-    title: "Birthday Banners",
-    image: img1
-  },
-  {
-    title: "Mature Banners",
-    image: img7
-  },
-  {
-    title: "Gruhapravesam Banners",
-    image: img6
-  },
-  {
-    title: "Engagement Banners",
-    image: img4
-  },
-  {
-    title: "Retirement Banners",
-    image: img11
-  },
-  {
-    title: "NamaKarana Banners",
-    image: img9
-  },
-  {
-    title: "GramaPanchayati Banners",
-    image: img10
-  },
+  { title: "Wedding Banners", image: img5 },
+  { title: "Christian Wedding Banners", image: img2 },
+  { title: "Muslim Wedding Banners", image: img8 },
+  { title: "Birthday Banners", image: img1 },
+  { title: "Mature Banners", image: img7 },
+  { title: "Gruhapravesam Banners", image: img6 },
+  { title: "Engagement Banners", image: img4 },
+  { title: "Retirement Banners", image: img11 },
+  { title: "NamaKarana Banners", image: img9 },
+  { title: "GramaPanchayati Banners", image: img10 },
 ];
 
-//cards inside Images
+// Wedding cards
 const categoriesinside = [
-  {
-    title: "Wedding Card",
-    image: wedding1
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding2
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding3
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding4
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding5
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding6
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding7
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding8
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding9
-  },
-  {
-    title:  "Wedding Card",
-    image: wedding10
-  },
+  { title: "Wedding Card", image: wedding1 },
+  { title: "Wedding Card", image: wedding2 },
+  { title: "Wedding Card", image: wedding3 },
+  { title: "Wedding Card", image: wedding4 },
+  { title: "Wedding Card", image: wedding5 },
+  { title: "Wedding Card", image: wedding6 },
+  { title: "Wedding Card", image: wedding7 },
+  { title: "Wedding Card", image: wedding8 },
+  { title: "Wedding Card", image: wedding9 },
+  { title: "Wedding Card", image: wedding10 },
 ];
-const Hoardingcategories = [
-  {
-    title: "Wedding Banners",
-    image: img5
-  },
-  {
-    title: "Christian Wedding Banners",
-    image: img2
-  },
-  {
-    title: "Muslim Wedding Banners",
-    image: img8
-  },
-  {
-    title: "Birthday Banners",
-    image: img1
-  },
-  {
-    title: "Mature Banners",
-    image: img7
-  },
-  {
-    title: "Gruhapravesam Banners",
-    image: img6
-  },
-  {
-    title: "Engagement Banners",
-    image: img4
-  },
-  {
-    title: "Retirement Banners",
-    image: img11
-  },
-  {
-    title: "NamaKarana Banners",
-    image: img9
-  },
-  {
-    title: "GramaPanchayati Banners",
-    image: img10
-  },
-];
-
 
 const qualityOptions = [
   { value: 'standard', label: 'Normal Quality' },
@@ -190,10 +83,11 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [fullScreenImage, setFullScreenImage] = useState(null);
   const [showOrderFormModal, setShowOrderFormModal] = useState(false);
-  
+
+  // ✅ Helper: push history entry without forcing forward
   const pushHistoryEntry = () => {
     try {
-      window.history.pushState(null, '', window.location.href);
+      window.history.pushState({}, '');
     } catch (err) {
       // no-op
     }
@@ -224,16 +118,8 @@ function App() {
     setSelectedCategory(null);
     setSelectedCard(null);
     setShowConfirmation(true);
-    setFormData({
-      name: '',
-      mobile: '',
-      categoryType: '',
-      quality: '',
-      quantity: '1'
-    });
+    setFormData({ name: '', mobile: '', categoryType: '', quality: '', quantity: '1' });
   };
-
-  // Reviews section removed
 
   const handleCategoryClick = (categoryTitle) => {
     pushHistoryEntry();
@@ -246,6 +132,7 @@ function App() {
   };
 
   const handleViewImage = (image) => {
+    pushHistoryEntry();
     setFullScreenImage(image);
   };
 
@@ -262,56 +149,45 @@ function App() {
     const onPopState = () => {
       if (fullScreenImage) {
         setFullScreenImage(null);
-        pushHistoryEntry();
         return;
       }
       if (showImageOrderForm) {
         setShowImageOrderForm(false);
-        pushHistoryEntry();
         return;
       }
       if (showOrderForm) {
         setShowOrderForm(false);
-        pushHistoryEntry();
         return;
       }
       if (showOrderFormModal) {
         setShowOrderFormModal(false);
-        pushHistoryEntry();
         return;
       }
       if (selectedCategory) {
         setSelectedCategory(null);
-        pushHistoryEntry();
         return;
       }
-      // On home page: stay within app and do not exit to browser
-      try {
-        pushHistoryEntry();
-        window.history.go(1);
-      } catch (e) {
-        // no-op
+      if (selectedImage) {
+        setSelectedImage(null);
+        return;
+      }
+      if (showConfirmation) {
+        setShowConfirmation(false);
+        return;
       }
     };
 
-    // Seed one entry so back from inner views returns within the app
+    // Initial state push
     pushHistoryEntry();
     window.addEventListener('popstate', onPopState);
-    return () => {
-      window.removeEventListener('popstate', onPopState);
-    };
-  }, [fullScreenImage, showImageOrderForm, showOrderForm, showOrderFormModal, selectedCategory]);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [fullScreenImage, showImageOrderForm, showOrderForm, showOrderFormModal, selectedCategory, selectedImage, showConfirmation]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <Header />
-      {/* <BannerSlider /> */}
-      {/* <HeroSlider /> */}
       <CategorySection categories={categories} handleCategoryClick={handleCategoryClick} />
-      {/* <HoardingSection />
-      <WeddingCardsSection/> */}
-      {/* <WhyChooseUs /> */}
-      {/* Reviews section removed */}
+
       <ImagePreviewModal selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
       <OrderFormModal
         showOrderForm={showOrderForm}
@@ -345,6 +221,7 @@ function App() {
         setFormData={setFormData}
         handleSubmitOrder={handleSubmitOrder}
       />
+
       {fullScreenImage && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
           <button
