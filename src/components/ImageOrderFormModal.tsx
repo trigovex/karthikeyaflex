@@ -21,6 +21,11 @@ const ImageOrderFormModal = ({ showImageOrderForm, setShowImageOrderForm, formDa
                 src={selectedImageData.url}
                 alt={selectedImageData.title}
                 className="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                crossOrigin="anonymous"
+                onError={(e) => {
+                  e.currentTarget.src = '/placeholder-image.jpg';
+                }}
               />
             </div>
             <form onSubmit={handleSubmitOrder} className="space-y-6">

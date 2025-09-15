@@ -11,8 +11,17 @@ const Header: React.FC = () => {
         <div className="glass rounded-2xl px-4 md:px-6 py-3 flex justify-between items-center">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
-            <img src={logo11} alt="Logo" className="h-10 md:h-12 w-auto drop-shadow" />
-            <span className="hidden sm:inline text-xl md:text-2xl font-extrabold gradient-text tracking-tight">Karthikeya Flex</span>
+            <img 
+              src={logo11} 
+              alt="Logo" 
+              className="h-10 md:h-12 w-auto drop-shadow"
+              loading="eager"
+              crossOrigin="anonymous"
+              onError={(e) => {
+                e.currentTarget.src = '/placeholder-logo.png';
+              }}
+            />
+            
           </a>
 
           {/* Desktop Menu */}

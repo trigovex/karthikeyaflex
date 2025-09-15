@@ -64,3 +64,53 @@ body {
   from { opacity: 0; transform: scale(0.98); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* iPhone and mobile optimizations */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific styles */
+  img {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+  
+  /* Fix for iOS image rendering issues */
+  .object-cover {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  /* Prevent iOS zoom on input focus */
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
+/* Image optimization for all devices */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Better image loading states */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Fix for iOS viewport issues */
+@supports (-webkit-touch-callout: none) {
+  .fixed {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}

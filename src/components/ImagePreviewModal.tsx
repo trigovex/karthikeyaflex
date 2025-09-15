@@ -19,6 +19,11 @@ const ImagePreviewModal = ({ selectedImage, setSelectedImage }) => {
           alt="Preview"
           className="max-w-[90%] max-h-[90vh] object-contain"
           onClick={(e) => e.stopPropagation()}
+          loading="lazy"
+          crossOrigin="anonymous"
+          onError={(e) => {
+            e.currentTarget.src = '/placeholder-image.jpg';
+          }}
         />
       </div>
     )

@@ -36,18 +36,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="text-center md:text-left">
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
-            <ul className="space-y-3">
-              {['Home', 'About Us', 'Services', 'Portfolio', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors duration-300">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+  
           <div className="text-center md:text-left">
             <h4 className="text-lg font-semibold mb-6">Our Services</h4>
             <ul className="space-y-3">

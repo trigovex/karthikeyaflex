@@ -8,6 +8,7 @@ import CategoryImagesModal from './components/CategoryImagesModal.tsx';
 import ImageOrderFormModal from './components/ImageOrderFormModal';
 import Header from './components/Header.tsx';
 import { X } from 'lucide-react';
+import { setupLazyLoading, applyIOSImageFixes } from './utils/imageUtils';
 
 import img1 from './Images/Birthday.jpg';
 import img2 from './Images/Christain_Wedding.jpg';
@@ -182,6 +183,11 @@ function App() {
     // Seed initial history entry
     pushHistoryEntry();
     window.addEventListener('popstate', onPopState);
+    
+    // Setup image optimizations
+    setupLazyLoading();
+    applyIOSImageFixes();
+    
     return () => window.removeEventListener('popstate', onPopState);
   }, [fullScreenImage, showImageOrderForm, showOrderForm, showOrderFormModal, selectedCategory, selectedImage, showConfirmation]);
 
@@ -237,6 +243,11 @@ function App() {
             alt="Preview"
             className="max-w-[90%] max-h-[90vh] object-contain"
             onClick={(e) => e.stopPropagation()}
+            loading="lazy"
+            crossOrigin="anonymous"
+            onError={(e) => {
+              e.currentTarget.src = '/placeholder-image.jpg';
+            }}
           />
         </div>
       )}

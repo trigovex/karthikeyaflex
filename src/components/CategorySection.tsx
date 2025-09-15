@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+cd import React, { useEffect, useState, useCallback, useMemo } from 'react';
+// @ts-ignore
 import { getCategories, getSubCategories, getCardsBySubCategory, sendEmail } from '../helpers/api_routes';
 import { X, Eye } from 'lucide-react';
 
@@ -119,7 +120,7 @@ interface CategoryCardsProps {
   handleCategoryClick?: (category: any) => void;
 }
 
-function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
+function CategoryCards({ category }: CategoryCardsProps) {
   const [subCategories, setSubCategories] = useState<SubCategory[]>([]);
   const [cards, setCards] = useState<Card[]>([]);
   const [showCardsModal, setShowCardsModal] = useState(false);
@@ -216,7 +217,16 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
               onClick={() => handleSubCategoryClick(subCategory.SubCategoryName, category.name)}
             >
               <div className="relative aspect-[1/0.8] overflow-hidden">
-                <img src={subCategory.SubCategoryFile || ""} alt={subCategory.SubCategoryName} className="w-full h-full object-cover"/>
+                <img 
+                  src={subCategory.SubCategoryFile || ""} 
+                  alt={subCategory.SubCategoryName} 
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  crossOrigin="anonymous"
+                  onError={(e) => {
+                    e.currentTarget.src = '/placeholder-image.jpg';
+                  }}
+                />
               </div>
               <div className="p-3 text-center bg-white/80 backdrop-blur-md border-t">
                 <h3 className="text-base font-bold text-gray-800 group-hover:text-indigo-600">{subCategory.SubCategoryName}</h3>
@@ -250,15 +260,74 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
                 <div key={idx} className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg border">
                   {/* Image + availability badge for Hoardings */}
                   <div className="relative w-full aspect-[16/10] overflow-hidden">
-                    <img src={card.CardFile} alt={card.CardName} className="w-full h-full object-cover"/>
-                    {category.name === "Hoardings" && (
-                      <div className="absolute top-3 right-3">
-                        <span className={`px-3 py-1 text-xs font-medium rounded-full shadow-md ${card?.isAvailable ? "bg-emerald-500 text-white" : "bg-red-500 text-white"}`}>
-                          {card?.isAvailable ? 'Available' : `From ${card?.AvailableDate || card?.CardDetails?.AvailableDate || 'TBD'}`}
-                        </span>
-                      </div>
-                    )}
-                  </div>
+  <img
+    src={card.CardFile}
+    alt={card.CardName}
+    className="w-full h-full object-cover"
+    loading="lazy"
+    crossOrigin="anonymous"
+    onError={(e) => {
+      e.currentTarget.src = '/placeholder-image.jpg';
+    }}
+  />
+
+  {category.name === "Hoardings" && (() => {
+    const rawDate =
+      card?.AvailableDate ||
+      card?.CardDetails?.AvailableDate ||
+      null;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let status = "";
+    let bgClass = "";
+
+    if (rawDate) {
+      let availableDate: Date | null = null;
+
+      // Detect format
+      if (rawDate.includes("-")) {
+        // Format: YYYY-MM-DD
+        const [year, month, day] = rawDate.split("-");
+        availableDate = new Date(+year, +month - 1, +day);
+      } else if (rawDate.includes("/")) {
+        // Format: MM/DD/YYYY
+        const [month, day, year] = rawDate.split("/");
+        availableDate = new Date(+year, +month - 1, +day);
+      }
+
+      if (availableDate) {
+        availableDate.setHours(0, 0, 0, 0);
+
+        if (availableDate.getTime() <= today.getTime()) {
+          status = "Available";
+          bgClass = "bg-emerald-500 text-white";
+        } else {
+          status = "Available Soon";
+          bgClass = "bg-yellow-500 text-black";
+        }
+      } else {
+        status = "From TBD";
+        bgClass = "bg-red-500 text-white";
+      }
+    } else {
+      status = "From TBD";
+      bgClass = "bg-red-500 text-white";
+    }
+
+    return (
+      <div className="absolute top-3 right-3">
+        <span
+          className={`px-3 py-1 text-xs font-medium rounded-full shadow-md ${bgClass}`}
+        >
+          {status}
+        </span>
+      </div>
+    );
+  })()}
+</div>
+
 
                   {/* Title */}
                   <div className="px-4 py-2 text-center">
@@ -298,7 +367,16 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
       {/* Preview Modal */}
       {showPreviewModal && selectedCard && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" onClick={() => setShowPreviewModal(false)}>
-          <img src={selectedCard.CardFile} alt={selectedCard.CardName} className="max-w-full max-h-[90vh] object-contain rounded-lg"/>
+          <img 
+            src={selectedCard.CardFile} 
+            alt={selectedCard.CardName} 
+            className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            loading="lazy"
+            crossOrigin="anonymous"
+            onError={(e) => {
+              e.currentTarget.src = '/placeholder-image.jpg';
+            }}
+          />
           <button onClick={() => setShowPreviewModal(false)} className="absolute top-6 right-6 text-white hover:text-red-400">
             <X className="w-6 h-6"/>
           </button>
@@ -315,7 +393,16 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
 
             {/* Full Width Image */}
             <div className="mb-6">
-              <img src={selectedCard.CardFile} alt={selectedCard.CardName} className="w-full max-h-64 object-contain rounded-xl shadow"/>
+              <img 
+                src={selectedCard.CardFile} 
+                alt={selectedCard.CardName} 
+                className="w-full max-h-64 object-contain rounded-xl shadow"
+                loading="lazy"
+                crossOrigin="anonymous"
+                onError={(e) => {
+                  e.currentTarget.src = '/placeholder-image.jpg';
+                }}
+              />
               <h3 className="text-lg font-bold text-center mt-3">{selectedCard.CardName}</h3>
             </div>
 
