@@ -8,7 +8,6 @@ import CategoryImagesModal from './components/CategoryImagesModal.tsx';
 import ImageOrderFormModal from './components/ImageOrderFormModal';
 import Header from './components/Header.tsx';
 import { X } from 'lucide-react';
-import { setupLazyLoading, applyIOSImageFixes } from './utils/imageUtils';
 
 import img1 from './Images/Birthday.jpg';
 import img2 from './Images/Christain_Wedding.jpg';
@@ -183,11 +182,6 @@ function App() {
     // Seed initial history entry
     pushHistoryEntry();
     window.addEventListener('popstate', onPopState);
-    
-    // Setup image optimizations
-    setupLazyLoading();
-    applyIOSImageFixes();
-    
     return () => window.removeEventListener('popstate', onPopState);
   }, [fullScreenImage, showImageOrderForm, showOrderForm, showOrderFormModal, selectedCategory, selectedImage, showConfirmation]);
 
@@ -243,10 +237,6 @@ function App() {
             alt="Preview"
             className="max-w-[90%] max-h-[90vh] object-contain"
             onClick={(e) => e.stopPropagation()}
-            loading="lazy"
-            onError={(e) => {
-              e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzk5YTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBhdmFpbGFibGU8L3RleHQ+Cjwvc3ZnPg==';
-            }}
           />
         </div>
       )}
