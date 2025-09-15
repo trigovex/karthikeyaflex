@@ -26,6 +26,16 @@ const CategoryImagesModal = ({ selectedCategory, setSelectedCategory, categories
                     src={category.image}
                     alt={category.title}
                     className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={(e) => {
+                      (e.target as HTMLImageElement).style.opacity = '1';
+                    }}
+                    onError={(e) => {
+                      console.error('Image failed to load:', (e.target as HTMLImageElement).src);
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                    style={{ opacity: 0, transition: 'opacity 0.3s' }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                     <div className="p-3 w-full">

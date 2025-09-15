@@ -289,8 +289,8 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
           status = "Available";
           bgClass = "bg-emerald-500 text-white";
         } else {
-          status = "Available Soon";
-          bgClass = "bg-yellow-500 text-black";
+          status = "Available";
+          bgClass = "bg-emerald-500 text-white";
         }
       } else {
         status = "From TBD";
