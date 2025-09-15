@@ -1,5 +1,4 @@
-cd import React, { useEffect, useState, useCallback, useMemo } from 'react';
-// @ts-ignore
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { getCategories, getSubCategories, getCardsBySubCategory, sendEmail } from '../helpers/api_routes';
 import { X, Eye } from 'lucide-react';
 
@@ -120,7 +119,7 @@ interface CategoryCardsProps {
   handleCategoryClick?: (category: any) => void;
 }
 
-function CategoryCards({ category }: CategoryCardsProps) {
+function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
   const [subCategories, setSubCategories] = useState<SubCategory[]>([]);
   const [cards, setCards] = useState<Card[]>([]);
   const [showCardsModal, setShowCardsModal] = useState(false);
@@ -217,16 +216,7 @@ function CategoryCards({ category }: CategoryCardsProps) {
               onClick={() => handleSubCategoryClick(subCategory.SubCategoryName, category.name)}
             >
               <div className="relative aspect-[1/0.8] overflow-hidden">
-                <img 
-                  src={subCategory.SubCategoryFile || ""} 
-                  alt={subCategory.SubCategoryName} 
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  crossOrigin="anonymous"
-                  onError={(e) => {
-                    e.currentTarget.src = '/placeholder-image.jpg';
-                  }}
-                />
+                <img src={subCategory.SubCategoryFile || ""} alt={subCategory.SubCategoryName} className="w-full h-full object-cover"/>
               </div>
               <div className="p-3 text-center bg-white/80 backdrop-blur-md border-t">
                 <h3 className="text-base font-bold text-gray-800 group-hover:text-indigo-600">{subCategory.SubCategoryName}</h3>
@@ -264,11 +254,6 @@ function CategoryCards({ category }: CategoryCardsProps) {
     src={card.CardFile}
     alt={card.CardName}
     className="w-full h-full object-cover"
-    loading="lazy"
-    crossOrigin="anonymous"
-    onError={(e) => {
-      e.currentTarget.src = '/placeholder-image.jpg';
-    }}
   />
 
   {category.name === "Hoardings" && (() => {
@@ -367,16 +352,7 @@ function CategoryCards({ category }: CategoryCardsProps) {
       {/* Preview Modal */}
       {showPreviewModal && selectedCard && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" onClick={() => setShowPreviewModal(false)}>
-          <img 
-            src={selectedCard.CardFile} 
-            alt={selectedCard.CardName} 
-            className="max-w-full max-h-[90vh] object-contain rounded-lg"
-            loading="lazy"
-            crossOrigin="anonymous"
-            onError={(e) => {
-              e.currentTarget.src = '/placeholder-image.jpg';
-            }}
-          />
+          <img src={selectedCard.CardFile} alt={selectedCard.CardName} className="max-w-full max-h-[90vh] object-contain rounded-lg"/>
           <button onClick={() => setShowPreviewModal(false)} className="absolute top-6 right-6 text-white hover:text-red-400">
             <X className="w-6 h-6"/>
           </button>
@@ -393,16 +369,7 @@ function CategoryCards({ category }: CategoryCardsProps) {
 
             {/* Full Width Image */}
             <div className="mb-6">
-              <img 
-                src={selectedCard.CardFile} 
-                alt={selectedCard.CardName} 
-                className="w-full max-h-64 object-contain rounded-xl shadow"
-                loading="lazy"
-                crossOrigin="anonymous"
-                onError={(e) => {
-                  e.currentTarget.src = '/placeholder-image.jpg';
-                }}
-              />
+              <img src={selectedCard.CardFile} alt={selectedCard.CardName} className="w-full max-h-64 object-contain rounded-xl shadow"/>
               <h3 className="text-lg font-bold text-center mt-3">{selectedCard.CardName}</h3>
             </div>
 

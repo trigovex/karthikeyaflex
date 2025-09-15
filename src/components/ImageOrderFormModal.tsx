@@ -22,9 +22,8 @@ const ImageOrderFormModal = ({ showImageOrderForm, setShowImageOrderForm, formDa
                 alt={selectedImageData.title}
                 className="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-500"
                 loading="lazy"
-                crossOrigin="anonymous"
                 onError={(e) => {
-                  e.currentTarget.src = '/placeholder-image.jpg';
+                  e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzk5YTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBhdmFpbGFibGU8L3RleHQ+Cjwvc3ZnPg==';
                 }}
               />
             </div>
