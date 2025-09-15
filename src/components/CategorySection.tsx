@@ -323,7 +323,7 @@ function CategoryCards({ category, handleCategoryClick }: CategoryCardsProps) {
                   {category.name === "Hoardings" && (
                     <div className="px-4 pb-2 text-sm text-gray-600 space-y-1">
                       <p>📍 Area: {card?.CardDetails?.Area || 'N/A'}</p>
-                      <p>📅 Available: {card?.CardDetails?.AvailableDate || card?.AvailableDate || 'TBD'}</p>
+                      <p>📅 Available From: {card?.CardDetails?.AvailableDate || card?.AvailableDate || 'TBD'}</p>
                     </div>
                   )}
 
